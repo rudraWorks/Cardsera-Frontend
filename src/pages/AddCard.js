@@ -101,39 +101,22 @@ function AddCard() {
     return (
         <Container>
             <Box as={motion.div}
-      initial={{y:'100vh'}}
-      animate={{y:0}}
-      transition={{type:'spring',stiffness:120}}
+      initial={{y:'100vh',scale:0}}
+      animate={{y:0,scale:1}}
+      transition={{type:'sneek'}}
             >
                 <h3>Word</h3>
-                <Input as={motion.input}
-                    initial={{ y: '-100vh', opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: .9}}
-                />
+                <Input/>
                 <h3>Meaning</h3>
-                <Input as={motion.input}
-                    initial={{ y: '-100vh', opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: .9 }}
-                />
+                <Input/>
                 <h3>Deck</h3>
-                <motion.div
+                <div
                     style={{ zIndex: '1000', width: '90%', margin: '5px' }}
-                    initial={{ y: '-100vh', opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: .9 }}
                 >
                     <Select styles={colourStyles} options={options} onChange={handleSelectChange} />
-
-                </motion.div>
+                </div>
                 <br />
-                <Button as={motion.button}
-                    initial={{ y: '-100vh', opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: .9 }}
-                    onClick={()=>toast.info('Message!', {position: "top-right"})}
-                >
+                <Button onClick={()=>toast.info('Message!', {position: "top-right"})}>
                     Add
                 </Button>
             </Box>

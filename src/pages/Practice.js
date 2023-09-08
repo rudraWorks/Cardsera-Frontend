@@ -81,7 +81,7 @@ function About() {
     <Container as={motion.div}
       initial={{ y: '100vh' }}
       animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 120 }}
+      transition={{ type: 'sneek'}}
       style={{ textAlign: 'justify' }}
     >
       <AnimatePresence>

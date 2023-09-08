@@ -58,7 +58,7 @@ function Modal() {
                 <motion.div style={MODAL_STYLES}
                     initial={{ scale: 1, y: '-100vh', x: '-50%' }}
                     animate={{ scale: 1, y: '-60%', x: '-50%' }}
-                    transition={{ type: 'spring', stiffness: 120 }}
+                    transition={{ type: 'sneek'}}
                 >
                     <Button onClick={() => dispatchModal({ type: 'CLOSE' })}>x</Button>
                     {modal}
