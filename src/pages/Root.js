@@ -10,11 +10,10 @@ const Container = styled.div`
     height:100vh; 
     width:100vw;
     border-radius: 0px;
-    background: #B3FFAB;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #12FFF7, #B3FFAB);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #12FFF7, #B3FFAB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 `
 const OutletContainer = styled.div`
     padding-top:30px;

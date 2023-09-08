@@ -57,12 +57,34 @@ const Button = styled.button`
     &:hover{
         background:#7fcf7f;
     }
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.3em 0.7em;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2),0 2px 0 rgba(255,255,255,0.15) inset;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 2px 0 rgba(255,255,255,0.15) inset;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 2px 0 rgba(255,255,255,0.15) inset;
+    color: #fff !important;
+    border: 1px solid #c47b07;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fba00c), to(#f67c16));
+    background: -moz-linear-gradient(top, #fba00c, #f67c16);
+    background: -o-linear-gradient(top, #fba00c, #f67c16);
+    background: linear-gradient(to bottom, #fba00c, #f67c16);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fba00c', endColorstr='#f67c16');
+    font-size: 1em;
+    line-height: 1.5;
+    border-radius: 6px;
+    text-shadow: 0 0 2px rgba(0,0,0,0.5);
+    
+    &:hover{
+        background:#e77313;
+    }
 `
 const options = [
     { value: 'rudra', label: 'rudra' },
     { value: 'pratap', label: 'pratap' },
-    { value: 'singh', label: 'singh' },
-    { value: 'prasad', label: 'prasad' },
 ]
 const colourStyles = {
     control: styles => ({ ...styles, backgroundColor: 'white', width: '100%'})

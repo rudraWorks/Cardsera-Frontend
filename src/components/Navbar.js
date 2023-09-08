@@ -25,7 +25,7 @@ const Container = styled.div`
     }
     @media only screen and (max-width: 600px) {
         &>a{
-            font-size:15px;
+            font-size:18px;
             margin-right:15px;
         }
     }
@@ -34,7 +34,7 @@ const LogoutDiv = styled.div`
     font-size:20px;
     margin-right:25px;
     @media only screen and (max-width: 600px) {
-            font-size:15px;
+            font-size:18px;
             margin-right:15px;
     }
 `
@@ -63,9 +63,7 @@ function Navbar() {
             animate={{ y: 0 }}
             transition={{ type: 'spring', stiffness: 120 }}
         >
-            <AnimatePresence>
-                {modal && <Modal />}
-            </AnimatePresence>
+            {modal && <Modal />}
 
             <NavLink to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                 <motion.div transition={transitionVariants} whileHover={hoverVariants}>
