@@ -64,7 +64,6 @@ function Navbar() {
             transition={{ type: 'spring', stiffness: 120 }}
         >
             {modal && <Modal />}
-
             <NavLink to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                 <motion.div transition={transitionVariants} whileHover={hoverVariants}>
                     Home

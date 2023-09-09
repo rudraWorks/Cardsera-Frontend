@@ -81,7 +81,7 @@ function About() {
     <Container as={motion.div}
       initial={{ y: '100vh' }}
       animate={{ y: 0 }}
-      transition={{ type: 'sneek'}}
+      transition={{ type: 'sneek' }}
       style={{ textAlign: 'justify' }}
     >
       <AnimatePresence>
@@ -90,6 +90,7 @@ function About() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
+            transition={{delay:.3}}
             style={{ width: '300px' }}
           >
             <Card wordProp={word} handleChange={handleChange} />
@@ -100,21 +101,32 @@ function About() {
       <AnimatePresence>
         {
           complete &&
-          <ControlButtons
-            as={motion.div}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-          >
-            <Button id='all' onClick={handleBtn}>All</Button>
-            <Button id='fromdeck' onClick={handleBtn}>From deck</Button>
-            <Button onClick={handleBtn}>Easy</Button>
-            <Button onClick={handleBtn}>Hard</Button>
-            <Button onClick={handleBtn}>Random</Button>
-            <Button onClick={handleBtn}>Unreviewed</Button>
-          </ControlButtons>
+          <>
+            <ControlButtons
+              as={motion.div}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+
+            >
+              <Button id='all' onClick={handleBtn}>All</Button>
+              <Button id='fromdeck' onClick={handleBtn}>From deck</Button>
+              <Button onClick={handleBtn}>Easy</Button>
+            </ControlButtons>
+            <ControlButtons
+              as={motion.div}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+
+            >
+              <Button onClick={handleBtn}>Hard</Button>
+              <Button onClick={handleBtn}>Random</Button>
+              <Button onClick={handleBtn}>Unreviewed</Button>
+            </ControlButtons>
+          </>
         }
-      </AnimatePresence>
+      </AnimatePresence> 
 
 
 

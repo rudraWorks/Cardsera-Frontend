@@ -13,9 +13,8 @@ const Container = styled.div`
   justify-content:center;
   padding:10px;
   border-radius:10px;
-  background: #70e1f5;  /* fallback for old browsers */
-
-
+    background: rgb(217 232 235);
+    border: 1px solid #afa2a2;
 `
 const Bottom = styled.div`
   margin-top:auto;
@@ -29,8 +28,20 @@ const Button = styled.button`
   margin:2px;
   border:none;
   border-radius:6px;
-  background:teal;
+  cursor:pointer;
   color:white;
+  &:nth-child(1){
+    background:tomato;
+  }
+  &:nth-child(1):hover{
+    background:#df563e;
+  }
+  &:nth-child(2){
+    background:#1b911b;
+  }
+  &:nth-child(2):hover{
+    background:green;
+  }
 `
 const Word = styled.div`
   width:100%;
@@ -58,12 +69,11 @@ const Meaning = styled.div`
   text-align:center;
   font-size:40px;
   border-radius:6px;
-  background: #FFEEEE;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #DDEFBB, #FFEEEE);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #DDEFBB, #FFEEEE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  // border:1px solid gray;
-
-  
+  background: linear-gradient(to left, rgb(154 152 183), rgb(95 173 197));
+  color:white;
+    display:flex;
+  align-items:center;
+  justify-content:center;
 `
 const Show = styled.button`
   width:100%;
@@ -102,6 +112,7 @@ function Card({ wordProp, handleChange }) {
           as={motion.div}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
+
         >{wordProp.meaning}</Meaning>
       }
       {!showMeaning && <Show onClick={() => setShowMeaning(true)} >Show meaning</Show>}
