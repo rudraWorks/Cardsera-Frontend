@@ -15,7 +15,7 @@ const Container = styled.div`
 `
 const Box = styled.div`
     width:320px;
-    max-width:85%;
+    max-width:100%;
     padding:15px;
     display:flex;
     flex-direction:column;

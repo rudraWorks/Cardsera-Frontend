@@ -30,7 +30,7 @@ function Root() {
         <Container as={motion.div}
             initial={{scale:0}}
             animate={{scale:1}} 
-            transition={{delay:.5,type:'spring',stiffness:120}}
+            transition={{delay:.5,type:'sneek'}}
         >
             <Navbar />
             <OutletContainer>
