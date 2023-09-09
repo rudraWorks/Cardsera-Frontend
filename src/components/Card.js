@@ -25,13 +25,15 @@ const Bottom = styled.div`
 `
 const Button = styled.button`
   width:50%;
-  margin:2px;
+  // margin:2px;
+  margin-top:5px;
   border:none;
   border-radius:6px;
   cursor:pointer;
   color:white;
   &:nth-child(1){
     background:tomato;
+    margin-right:3px;
   }
   &:nth-child(1):hover{
     background:#df563e;
@@ -67,13 +69,14 @@ const Meaning = styled.div`
   margin-top:7px;
   // background:skyblue;
   text-align:center;
-  font-size:40px;
+  font-size:30px;
   border-radius:6px;
   background: linear-gradient(to left, rgb(154 152 183), rgb(95 173 197));
   color:white;
     display:flex;
   align-items:center;
   justify-content:center;
+  word-break:break-all;
 `
 const Show = styled.button`
   width:100%;

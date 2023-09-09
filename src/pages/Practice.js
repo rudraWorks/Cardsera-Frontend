@@ -22,7 +22,7 @@ const ControlButtons = styled.div`
   }
   // flex-direction:column;
   // background:gray;
-  padding:2px;
+  // padding:2px;
   // border-radius:10px;
   display:flex;
   flex-wrap:wrap;
