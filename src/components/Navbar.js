@@ -11,7 +11,7 @@ import useModal from '../Hooks/useModal'
 const Container = styled.div` 
     display:flex;
     align-items:center;
-    justify-content:center;
+    // justify-content:center;
     padding:10px;
     height:30px;
     // background:aliceblue;
@@ -37,6 +37,7 @@ const Container = styled.div`
 const LogoutDiv = styled.div`
     font-size:22px;
     margin-right:25px;
+    margin-left:auto;
     @media only screen and (max-width: 600px) {
             font-size:18px;
             margin-right:15px;
