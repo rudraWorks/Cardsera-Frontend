@@ -1,5 +1,6 @@
 import React from 'react'
 import useUser from '../Hooks/useUser'
+import { motion } from 'framer-motion'
 
 function Stats() {
   const { user } = useUser()
@@ -7,8 +8,15 @@ function Stats() {
   if (!user)
     return <h3>User auth failed</h3>
   return (
-    <div>Stats</div>
-  )
+    <motion.div 
+      initial={{ y: '100vh' }}
+      animate={{ y: 0 }}
+      transition={{ type: 'sneek' }}
+    > 
+      <h3>feature coming soon...</h3>
+      
+    </motion.div> 
+  ) 
 }
 
 export default Stats
