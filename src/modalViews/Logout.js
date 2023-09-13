@@ -23,23 +23,24 @@ const Button = styled.button`
   }
 `
 function Logout() {
-  const {user,dispatch} = useUser()
-  const {dispatchModal} = useModal()
+  const { user, dispatch } = useUser()
+  const { dispatchModal } = useModal()
   const navigate = useNavigate()
 
+
   const logoutHandler = () => {
-    dispatchModal({type:'CLOSE'})
-    dispatch({type:'LOGOUT'})
+    dispatchModal({ type: 'CLOSE' })
+    dispatch({ type: 'LOGOUT' })
     navigate('/')
   }
   return (
     <Container>
-        <h2>{user.name}</h2>
-        <h3>{user.email}</h3>
-        <br/>
-        <img src={user.picture} referrerPolicy='no-referrer'/>
-        <br/>
-        <Button onClick={logoutHandler}>Logout</Button> 
+      <h2>{user.name}</h2>
+      <h3>{user.email}</h3>
+      <br />
+      <img src={user.picture} referrerPolicy='no-referrer' />
+      <br />
+      <Button onClick={logoutHandler}>Logout</Button>
     </Container>
   )
 }

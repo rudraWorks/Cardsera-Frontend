@@ -11,33 +11,27 @@ import useModal from '../Hooks/useModal'
 const Container = styled.div` 
     display:flex;
     align-items:center;
-    // justify-content:center;
     padding:10px;
     height:30px;
-    // background:aliceblue;
-    padding:40px;
-    // border-bottom:1px solid #d5dee5;
+    padding:30px;
     &>a{
         text-decoration:none;
         color:white;
         margin-right:45px;
         font-size:22px;
     }
+
     @media only screen and (max-width: 600px) {
         &>a{
             font-size:18px;
             margin-right:15px;
         }
     }
-    background: #a8ff78;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #78ffd6, #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    background:#9cdce4;
+    border-bottom:1px solid #b3afaf;
 `
 const LogoutDiv = styled.div`
     font-size:22px;
-    margin-right:25px;
-    margin-left:auto;
     @media only screen and (max-width: 600px) {
             font-size:18px;
             margin-right:15px;
@@ -69,13 +63,14 @@ function Navbar() {
             transition={{ type: 'spring', stiffness: 120 }}
         >
             {modal && <Modal />}
+
             <NavLink to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                 <motion.div transition={transitionVariants} whileHover={hoverVariants}>
                     Home
                 </motion.div>
             </NavLink>
 
-            {1 &&
+            {user &&
 
                 <>
                     <NavLink to={'/practice'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>

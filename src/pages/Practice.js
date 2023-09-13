@@ -1,39 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 import Card from '../components/Card'
-import arr from '../utils/fakeMeanings'
+import useUser from '../Hooks/useUser'
+import { toast } from 'react-toastify'
+import shuffle from '../utils/shuffleArray'
+import useModal from '../Hooks/useModal'
+import ChooseDeck from '../modalViews/ChooseDeck'
 
 const Container = styled.div`
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
   margin-top:30px;
-  // background:lightgray;
-  // border:1px solid gray;
-  // border-radius:10px;
-
+  // background:gray;
 `
 const ControlButtons = styled.div`
   &>button{
     margin:10px;
     margin-top:0px;
   }
-  // flex-direction:column;
-  // background:gray;
-  // padding:2px;
-  // border-radius:10px;
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   align-items:center;
 `
-const Button = styled.button`
+export const Button = styled.button`
   padding:5px;
-  width:100px;
+  min-width:100px;
   height:35px;
-  margin:5px;
+  margin:10px;
   font-weight: bold;
     display: inline-block;
     cursor: pointer;
@@ -60,23 +56,154 @@ const Button = styled.button`
 
 
 function About() {
-  const [btn, setBtn] = useState(null)
-  const [word, setWord] = useState(arr[0])
+  const [word, setWord] = useState(null)
   const [complete, setComplete] = useState(true)
+  const [loading, setLoading] = useState(false)
+  let [arr, setArr] = useState([])
+  const [progress, setProgress] = useState({ know: 0, dontKnow: 0 })
 
-  const handleChange = () => {
+
+  const { user } = useUser()
+  const { dispatchModal } = useModal()
+
+  const handleKnow = async () => {
     if (!arr.length) {
       setComplete(true)
       return
     }
-    setWord(arr[0])
     arr.shift()
+    setArr([...arr])
+    setProgress(p => ({ know: p.know + 1, dontKnow: p.dontKnow - 1 }))
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/correct`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': user.token
+        },
+        body: JSON.stringify({ cardId: word.cardId })
+      })
+      const json = await response.json()
+      if (!response.ok) {
+        toast.error(json.message)
+      }
+    }
+    catch (e) {
+      toast.error(e.message)
+    }
   }
 
-  const handleBtn = (e) => {
-    console.log(e.target.id)
-    setComplete(false)
+  const handleDontKnow = async () => {
+    setArr([...shuffle(arr)])
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/incorrect`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': user.token
+        },
+        body: JSON.stringify({ cardId: word.cardId })
+      })
+      const json = await response.json()
+      if (!response.ok) {
+        toast.error(json.message)
+      }
+    }
+    catch (e) {
+      toast.error(e.message)
+    }
+
   }
+  useEffect(() => {
+    if (arr.length) {
+      setWord(arr[0])
+      setProgress(p => ({ ...p, dontKnow: arr.length }))
+    }
+    else {
+      setWord(null)
+      setComplete(true)
+    }
+  }, [arr])
+
+  const fetchCards = async (action) => {
+    setLoading(true)
+    try {
+      let response
+
+      switch (action.type) {
+        case 'allCards': response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/allCards`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': user.token
+          }
+        });
+          break;
+
+        case 'unreviewedCards': response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/unreviewedCards`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': user.token
+          }
+        })
+          break;
+
+        case 'easyCards': response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/easyCards`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': user.token
+          }
+        })
+          break;
+
+        case 'hardCards': response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/hardCards`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': user.token
+          }
+        })
+          break;
+
+        case 'chooseDeck': response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/fromDeck/${action.value}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'authorization': user.token
+            }
+          })
+          break;
+      }
+
+      const json = await response.json()
+      console.log(json);
+      if (!response.ok) {
+        toast.error(json.message)
+        setComplete(true)
+      }
+      else {
+        setProgress({ know: 0, dontKnow: json.cards.length })
+        json.cards = shuffle(json.cards)
+        setArr(json.cards)
+        setComplete(false)
+      }
+    }
+    catch (e) {
+      toast.error(e.message)
+      setComplete(true)
+    }
+    setLoading(false)
+  }
+
+  if (!user)
+    return <h3>User auth failed</h3>
+
+  if (loading)
+    return <h3>Loading...</h3>
+
   return (
     <Container as={motion.div}
       initial={{ y: '100vh' }}
@@ -90,10 +217,10 @@ function About() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            transition={{delay:.3}}
+            transition={{ delay: .3 }}
             style={{ width: '300px' }}
           >
-            <Card wordProp={word} handleChange={handleChange} />
+            <Card wordProp={word} handleKnow={handleKnow} progress={progress} handleDontKnow={handleDontKnow} />
           </motion.div>
         }
       </AnimatePresence>
@@ -101,32 +228,21 @@ function About() {
       <AnimatePresence>
         {
           complete &&
-          <>
-            <ControlButtons
-              as={motion.div}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
+          <ControlButtons
+            as={motion.div}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+          >
+            <Button onClick={() => fetchCards({ type: 'allCards' })}>All cards</Button>
+            <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <ChooseDeck fetchCards={fetchCards} /> })}>Choose from deck</Button>
+            <Button onClick={() => fetchCards({ type: 'easyCards' })}>Easy cards</Button>
+            <Button onClick={() => fetchCards({ type: 'hardCards' })}>Hard cards</Button>
+            <Button onClick={() => fetchCards({ type: 'unreviewedCards' })}>Unreviewed cards</Button>
 
-            >
-              <Button id='all' onClick={handleBtn}>All</Button>
-              <Button id='fromdeck' onClick={handleBtn}>From deck</Button>
-              <Button onClick={handleBtn}>Easy</Button>
-            </ControlButtons>
-            <ControlButtons
-              as={motion.div}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-
-            >
-              <Button onClick={handleBtn}>Hard</Button>
-              <Button onClick={handleBtn}>Random</Button>
-              <Button onClick={handleBtn}>Unreviewed</Button>
-            </ControlButtons>
-          </>
+          </ControlButtons>
         }
-      </AnimatePresence> 
+      </AnimatePresence>
 
 
 

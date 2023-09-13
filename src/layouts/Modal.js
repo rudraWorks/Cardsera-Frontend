@@ -10,13 +10,16 @@ const MODAL_STYLES = {
     left: '50%',
     transform: 'translate(-50%,-50%)',
     width: '400px',
-    height: '300px',
+    minHeight: '200px',
     maxWidth: '90%',
     maxHeight: '90%',
     zIndex: '3000',
     background: 'white',
     borderRadius: '10px',
-    padding: '10px'
+    padding: '30px',
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
 }
 const BACKGROUND_STYLES = {
     position: 'absolute',
@@ -29,9 +32,9 @@ const BACKGROUND_STYLES = {
 }
 
 const Button = styled.button`
-    position:relative;
-    top:-3%;
-    right:-96%;
+    position:absolute;
+    top:0%;
+    right:0%;
     width:25px;
     height:25px;
     border-radius:50%;
@@ -56,12 +59,13 @@ function Modal() {
                 exit={{opacity:0}} 
             ></motion.div> 
                 <motion.div style={MODAL_STYLES}
-                    initial={{ scale: 1, y: '-100vh', x: '-50%' }}
-                    animate={{ scale: 1, y: '-60%', x: '-50%' }}
+                    initial={{ y: '-100vh', x: '-50%' }}
+                    animate={{  y: '-60%', x: '-50%' }}
                     transition={{ type: 'sneek'}}
                 >
-                    <Button onClick={() => dispatchModal({ type: 'CLOSE' })}>x</Button>
                     {modal}
+                    <Button onClick={() => dispatchModal({ type: 'CLOSE' })}>x</Button>
+
                 </motion.div>
         </motion.div>,
         document.getElementById('modal')

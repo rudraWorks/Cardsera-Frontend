@@ -4,6 +4,8 @@ import jwt_decode from 'jwt-decode'
 import useUser from '../Hooks/useUser'
 import useModal from '../Hooks/useModal'
 import { useNavigate } from 'react-router-dom'
+import {toast} from 'react-toastify';
+
 
 const Container = styled.div`
     display:flex;
@@ -17,12 +19,26 @@ function Login() {
     const navigate = useNavigate()
     const {dispatchModal} = useModal()
 
-    async function handleCallbackResponse(response) {
-        const userObject = jwt_decode(response.credential)
+    async function handleCallbackResponse(userData) {
+        const userObject = jwt_decode(userData.credential)
         const { name, picture, email } = userObject
-        dispatch({type:'LOGIN',user:{name,picture,email}})
-        dispatchModal({type:'CLOSE'})
-        navigate('/')
+
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/login`,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({name,picture,email})
+        })
+
+        const json = await response.json() 
+
+        if(response.ok){
+            dispatch({type:'LOGIN',name,picture,email,token:json.token})
+            dispatchModal({type:'CLOSE'})
+            navigate('/') 
+        }
+        else{
+            toast.error(json.message)
+        }
     }
     useEffect(() => {
         setTimeout(() => {
@@ -44,7 +60,6 @@ function Login() {
     return (
         <Container>
             <h2>Login to Vocucards</h2>
-            <br/>
             <br/>
             <br/>
             <div id='signinDiv'></div> 
