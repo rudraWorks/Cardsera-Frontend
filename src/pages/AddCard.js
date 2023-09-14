@@ -15,7 +15,7 @@ const Container = styled.div`
     margin-top:30px;
     padding:10px;
 `
-const Box = styled.div`
+export const Box = styled.div`
     width:320px;
     max-width:100%;
     padding:15px;
@@ -27,9 +27,8 @@ const Box = styled.div`
 
     padding:10px;
     border-radius:10px;
-      background: rgb(217 232 235);
-      border: 1px solid #afa2a2;
-
+    background:aliceblue;
+    border:1px solid skyblue;
 
 `
 const Input = styled.input`

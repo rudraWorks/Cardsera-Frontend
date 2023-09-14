@@ -27,8 +27,9 @@ const Container = styled.div`
             margin-right:15px;
         }
     }
-    background:#9cdce4;
-    border-bottom:1px solid #b3afaf;
+    background:#e0e8ef;
+    border-bottom:1px solid skyblue;
+    z-index:1000;
 `
 const LogoutDiv = styled.div`
     font-size:22px;

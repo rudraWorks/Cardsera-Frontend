@@ -9,8 +9,6 @@ import {toast} from 'react-toastify'
 import useUser from '../Hooks/useUser'
 
 const Box = styled.div`
-  // background:gray;
-  // border:1px solid gray;
   min-height:220px;
   width:100%;
   display:flex;
@@ -19,8 +17,8 @@ const Box = styled.div`
   justify-content:center;
   padding:10px;
   border-radius:10px;
-    background: rgb(217 232 235);
-    border: 1px solid #afa2a2;
+  background:aliceblue;
+  border:1px solid skyblue;
 `
 const Bottom = styled.div`
   margin-top:auto;
@@ -73,12 +71,11 @@ const Meaning = styled.div`
   width:100%;
   min-height:105px;
   margin-top:7px;
-  // background:skyblue;
   text-align:center;
   font-size:30px;
   border-radius:6px;
-  background: linear-gradient(to left, rgb(154 152 183), rgb(95 173 197));
-  color:white;
+  background:lightgreen;
+  border:1px solid #77c577;
     display:flex;
   align-items:center;
   justify-content:center;

@@ -19,8 +19,8 @@ function CardDetails({ card }) {
     return (
         <Container>
             {/* <h3>Card id: <span>{card.cardId}</span></h3> */}
-            <h3>Created on: <span>{new Date(card.dateAdded).toLocaleString()}</span></h3>
-            <h3>Last reviewed on: <span>{ new Date(card.lastReviewed).toString()===new Date(0).toString()?'Not reviewed yet': new Date(card.lastReviewed).toLocaleString()}</span></h3>
+            <h3>Created on: <span>{new Date(card.dateAdded).toLocaleString('en-GB')}</span></h3>
+            <h3>Last reviewed on: <span>{ new Date(card.lastReviewed).toString()===new Date(0).toString()?'Not reviewed yet': new Date(card.lastReviewed).toLocaleString('en-GB')}</span></h3>
             <h3>Deck:<span> {card.deck}</span></h3>
             <h3>Total reviewed: <span>{card.totalReviewed}</span></h3>
             <h3>Correct: <span>{card.correct}</span></h3>

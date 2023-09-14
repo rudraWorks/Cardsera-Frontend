@@ -17,8 +17,8 @@ const Bottom = styled.div`
     margin-top:auto;
     text-align:center;
     padding:5px;
-    background:#9cdce4;
-    border-top:1px solid #b3afaf;
+    background:#e0e8ef;
+    border-top:1px solid skyblue;
 `
 const OutletContainer = styled.div`
     padding:40px;
