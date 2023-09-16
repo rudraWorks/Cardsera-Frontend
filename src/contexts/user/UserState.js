@@ -40,7 +40,7 @@ function UserState({ children }) {
                     else{
                         dispatch({type:'LOGOUT'})
                     }
-                }
+                } 
                 else{ 
                     dispatch({type:'LOGOUT'})
                 }

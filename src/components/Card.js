@@ -61,7 +61,6 @@ const Word = styled.div`
   align-items:center;
   justify-content:center;
   font-size:20px;
-  word-break:break-all;
   padding:2px;
   border-radius:6px;
   // border:1px solid gray;
@@ -72,14 +71,13 @@ const Meaning = styled.div`
   min-height:105px;
   margin-top:7px;
   text-align:center;
-  font-size:30px;
+  font-size:20px;
   border-radius:6px;
   background:lightgreen;
   border:1px solid #77c577;
     display:flex;
   align-items:center;
   justify-content:center;
-  word-break:break-all;
 `
 const Show = styled.button`
   width:100%;

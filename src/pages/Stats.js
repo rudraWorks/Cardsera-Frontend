@@ -14,7 +14,7 @@ const Container = styled.div`
 `
 const Card = styled.div`
   min-width:280px; 
-  min-height:250px;
+  min-height:200px;
   background:aliceblue;
   border:1px solid skyblue;
   margin:15px;
@@ -46,7 +46,7 @@ function Stats() {
     if (!user)
       return
     setLoading(true)
-    const loadData = async () => {
+    const loadData = async () => { 
       try {
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/stats/data`, {
           method: 'GET',
@@ -57,8 +57,9 @@ function Stats() {
         })
         const json = await response.json()
         console.log(json);
+        setLoading(false)
         if (!response.ok) {
-          return toast.error(json.message)
+           return toast.error(json.message) 
         } 
         setData(json)
       }
@@ -68,6 +69,7 @@ function Stats() {
       setLoading(false)
     }
     loadData()
+
   }, [user])
 
   if (!user)
