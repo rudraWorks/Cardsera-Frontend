@@ -5,7 +5,7 @@ const FeaturesContainer = styled.div`
   background: linear-gradient(135deg, #3498db, #8e44ad);
   padding: 20px;
   color: white;
-  max-height: ${props => (props.isVisible ? '500px' : '0')};
+  max-height: ${props => (props.isVisible ? '990px' : '0')};
   visibility: ${props => (props.isVisible ? 'visible' : 'hidden')}; /* Added visibility property */
   overflow: hidden;
   border-radius: 10px;
