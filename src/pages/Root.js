@@ -14,6 +14,7 @@ const Container = styled.div`
     flex-direction:column;
 `
 const Bottom = styled.div`
+    display:none;
     margin-top:auto;
     text-align:center;
     padding:5px;
