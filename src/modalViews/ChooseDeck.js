@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { toast } from 'react-toastify'
 import useUser from '../Hooks/useUser'
 import useModal from '../Hooks/useModal'
+import Loader from '../components/Loader'
 
 const Container = styled.div`
 
@@ -51,7 +52,7 @@ function ChooseDeck({fetchCards}) {
     dispatchModal({type:'CLOSE'})
   }
   if (loading) 
-    return <h3>Loading...</h3>
+    return <Loader/>
   return (
     <Container>
 

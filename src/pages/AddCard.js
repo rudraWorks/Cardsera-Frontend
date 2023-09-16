@@ -5,6 +5,7 @@ import Select from 'react-select/creatable'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from '../Hooks/useUser';
+import Loader from '../components/Loader';
 
 
 const Container = styled.div`
@@ -160,7 +161,7 @@ function AddCard() {
     if (!user)
         return <h3>User auth failed</h3>
     if(loading)
-        return <h3>Loading...</h3>
+        return <Loader/>
     return (
         <Container>
             <Box as={motion.div}

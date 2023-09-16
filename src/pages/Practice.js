@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import shuffle from '../utils/shuffleArray'
 import useModal from '../Hooks/useModal'
 import ChooseDeck from '../modalViews/ChooseDeck'
+import Loader from '../components/Loader'
 
 const Container = styled.div`
   display:flex;
@@ -202,7 +203,7 @@ function About() {
     return <h3>User auth failed</h3>
 
   if (loading)
-    return <h3>Loading...</h3>
+    return <Loader/>
 
   return (
     <Container as={motion.div}

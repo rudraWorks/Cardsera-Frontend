@@ -3,7 +3,7 @@ import useUser from '../Hooks/useUser'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { toast } from 'react-toastify'
-
+import Loader from '../components/Loader'
 
 const Container = styled.div`
   display:flex;
@@ -40,10 +40,12 @@ const Box = styled.div`
 function Stats() {
   const { user } = useUser()
   const [data, setData] = useState(null)
+  const [loading,setLoading] = useState(false)
 
   useEffect(() => {
     if (!user)
       return
+    setLoading(true)
     const loadData = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/stats/data`, {
@@ -54,6 +56,7 @@ function Stats() {
           }
         })
         const json = await response.json()
+        console.log(json);
         if (!response.ok) {
           return toast.error(json.message)
         } 
@@ -62,12 +65,15 @@ function Stats() {
       catch (e) { 
         toast.error(e.message)
       }
+      setLoading(false)
     }
     loadData()
   }, [user])
 
   if (!user)
     return <h3>User auth failed</h3>
+  if(loading)
+    return <Loader/>
   return (
     <Container
       as={motion.div}

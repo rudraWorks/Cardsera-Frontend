@@ -70,8 +70,8 @@ function Navbar() {
                     Home
                 </motion.div>
             </NavLink>
-
-            {user &&
+            {user==='LOADING' && <i>Loading...</i>}
+            {user && user!=='LOADING' &&
 
                 <>
                     <NavLink to={'/practice'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
@@ -107,7 +107,7 @@ function Navbar() {
             >
                 <motion.div transition={transitionVariants} whileHover={hoverVariants}>
                     {!user && <span>Login</span>}
-                    {user && <span>Profile</span>}
+                    {user && user!=='LOADING' && <span>Profile</span>}
                 </motion.div>
 
             </LogoutDiv>

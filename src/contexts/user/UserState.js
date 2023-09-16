@@ -8,10 +8,14 @@ const reducer = (state, action) => {
             localStorage.setItem('vocaUser', JSON.stringify({email,picture,token,name}))
             return {email,picture,token,name}
         }
+        case 'LOADING':{
+            return 'LOADING'
+        }
         case 'LOGOUT': {
             localStorage.removeItem('vocaUser')
             return null
         }
+        
     }
 }
 function UserState({ children }) {
@@ -21,6 +25,7 @@ function UserState({ children }) {
         const checkUser = async () => {
             try {
                 const currentUser = localStorage.getItem('vocaUser') 
+                dispatch({type:'LOADING'})
                 if (currentUser) {
                     const {token,name,email,picture} = JSON.parse(currentUser)
                     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/verifyToken`,{
@@ -36,10 +41,13 @@ function UserState({ children }) {
                         dispatch({type:'LOGOUT'})
                     }
                 }
+                else{ 
+                    dispatch({type:'LOGOUT'})
+                }
             }
             catch (e) {
                 dispatch('LOGOUT')
-            }
+            } 
         }
         checkUser()
     }, [])
