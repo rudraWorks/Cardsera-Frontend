@@ -22,7 +22,7 @@ const Bottom = styled.div`
     border-top:1px solid skyblue;
 `
 const OutletContainer = styled.div`
-    padding:40px;
+    padding:20px;
     overflow-y:scroll;
     height:100%;
 `
