@@ -6,10 +6,11 @@ import { toast } from 'react-toastify'
 import Loader from '../components/Loader'
 import formatChange from '../utils/dateFormatChanger'
 import Chart from '../components/Chart'
+import {Button} from '../pages/Practice'
 
 const Container = styled.div`
   display:flex;
-  flex-direction:column;
+  flex-direction:column; 
   border-radius:10px;
 `
 const Card = styled.div`
@@ -41,6 +42,9 @@ function Stats() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [dayWiseReviews,setDayWiseReviews] = useState([])
+  const [dayWiseAccuracies,setDayWiseAccuracies] = useState([])
+  const [toggleAccuracy,setToggleAccuracy] = useState(true)
+  const [chartData,setChartData] = useState([])
 
   useEffect(() => {
     if (!user)
@@ -65,8 +69,12 @@ function Stats() {
         const dwr = json.day.map((item)=>{ 
           return {time:formatChange(item.date),value:item.totalReviewed}
         })
-        console.log(dwr);
+        const dwa = json.day.map((item)=>{
+          return {time:formatChange(item.date),value:(item.correct*100)/item.totalReviewed}
+        })
         setDayWiseReviews(dwr)
+        setDayWiseAccuracies(dwa) 
+        setChartData(dwa)
       }
       catch (e) {
         toast.error(e.message)
@@ -77,6 +85,17 @@ function Stats() {
 
   }, [user])
 
+  useEffect(()=>{
+    if(toggleAccuracy){
+      setChartData(dayWiseAccuracies)
+    }
+    else setChartData(dayWiseReviews) 
+  },[toggleAccuracy])
+
+  const handleChangeData = () => {
+    setToggleAccuracy((p)=>!p)
+  }
+
   if (!user)
     return <h3>User auth failed</h3>
   if (loading)
@@ -85,12 +104,13 @@ function Stats() {
     <Container
       as={motion.div}
       initial={{ y: '100vh' }}
-      animate={{ y: 0 }}
+      animate={{ y: 0 }} 
       transition={{ type: 'sneek' }}
     >
       <Card>
-        <Chart dayWiseReviews={dayWiseReviews} />
-        <h3 style={{marginLeft:'10px'}}>x-axis: date <br/> y-axis: number of cards reviewed</h3>
+        <Button onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy':'Reviews'}</Button>
+        <Chart chartData={chartData} />
+        <h3 style={{marginLeft:'10px',marginTop:'10px'}}>x-axis: date <br/> y-axis: {toggleAccuracy?'Accuracy':'number of cards reviewed'}</h3>
 
       </Card>
 

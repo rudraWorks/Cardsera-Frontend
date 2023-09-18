@@ -12,4 +12,4 @@ const formatChange = (ddmmyyyy) => {
     return yyyymmdd
 }
 
-export default formatChange
+export default formatChange 
