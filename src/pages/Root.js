@@ -23,8 +23,9 @@ const Bottom = styled.div`
 `
 const OutletContainer = styled.div`
     padding:20px;
-    overflow-y:scroll;
+    overflow-x:hidden;
     height:100%;
+    padding-bottom:0;
 `
 
 function Root() {

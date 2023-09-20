@@ -29,7 +29,7 @@ const Hr = styled.hr`
   margin-bottom:10px;
 `
 const Box = styled.div`
-  background:lightgray;
+  background:gainsboro;
   margin-top:5px;
   display:flex;
   flex-direction:column;
@@ -131,11 +131,11 @@ function Stats() {
           <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB') : 'NA'}</h3>
 
         </Card>
-        <Card>
+        <Card style={{maxHeight:'300px',overflowY:'scroll'}}>
           <h1>Decks</h1>
           <Hr />
           <h3>Total decks: {data?.decks.totalDecks || 0}</h3>
-          {
+          { 
             data?.decks?.allDecks.map(deck => {
               return <Box key={deck.name}>
                 <span>Deck name: {deck.name} </span>

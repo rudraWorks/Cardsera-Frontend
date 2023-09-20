@@ -12,9 +12,10 @@ import Loader from '../components/Loader'
 const Container = styled.div`
   display:flex;
   flex-direction:column;
-  align-items:center;
+  // align-items:center;
   margin-top:30px;
   // background:gray;
+  height:90%;
 `
 const ControlButtons = styled.div`
   &>button{
@@ -219,7 +220,6 @@ function About() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             transition={{ delay: .3 }}
-            style={{ width: '300px' }}
           >
             <Card wordProp={word} handleKnow={handleKnow} progress={progress} handleDontKnow={handleDontKnow} />
           </motion.div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import Select from 'react-select/creatable'
@@ -7,30 +7,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import useUser from '../Hooks/useUser';
 import Loader from '../components/Loader';
 
-
+ 
 const Container = styled.div`
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
     margin-top:30px;
-    padding:10px;
+    display:flex;
+    justify-content:center; 
 `
 export const Box = styled.div`
-    width:320px;
-    max-width:100%;
+    width:100%;
+    max-width:600px;
     padding:15px;
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:center;
     border-radius:10px;
-
     padding:10px;
     border-radius:10px;
     background:aliceblue;
     border:1px solid skyblue;
-
 `
 const Input = styled.input`
     padding:5px;
@@ -83,6 +77,18 @@ const Button = styled.button`
         background:#e77313;
     }
 `
+
+const Textarea = styled.textarea`
+    width:90%;
+    height:200px;
+    resize:none;
+    padding:10px;
+    border:1px solid skyblue;
+    border-radius:5px;
+    &:focus{
+        outline:1px solid blue;
+    }
+`
 const colourStyles = {
     control: styles => ({ ...styles, backgroundColor: 'white', width: '100%' })
 }
@@ -90,30 +96,31 @@ function AddCard() {
 
     const [options, setOptions] = useState([])
     const { user } = useUser()
-    const [loading,setLoading] = useState(true)
-    const [front,setFront] = useState('')
-    const [back,setBack] = useState('')
-    const [deck,setDeck] = useState('')
+    const [loading, setLoading] = useState(true)
+    const [front, setFront] = useState('')
+    const [back, setBack] = useState('')
+    const [deck, setDeck] = useState('')
 
-    const [added,setAdded] = useState(0)
-    
+    const [added, setAdded] = useState(0)
+
+    const editor = useRef(null);
 
     useEffect(() => {
 
         const loadDecks = async () => {
-            if(!user)
-                return 
+            if (!user)
+                return
             try {
-                const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/decks`,{
-                    method:'GET',
-                    headers:{
-                        'Content-Type':'application/json',
-                        'authorization':user.token 
+                const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/decks`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'authorization': user.token
                     }
                 })
                 const json = await response.json()
                 console.log(json);
-                if(!response.ok){
+                if (!response.ok) {
                     return toast.error(json.message)
                 }
                 setOptions(json.decks)
@@ -124,44 +131,44 @@ function AddCard() {
             }
         }
         loadDecks()
-    }, [user,added])
+    }, [user, added])
 
 
     const handleSelectChange = (val) => {
-       setDeck(val.value)
+        setDeck(val.value)
     }
 
     const addCard = async () => {
-        if(!front || !back || !deck)
+        if (!front || !back || !deck)
             return toast.error('Invalid input')
-        try{
-            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/card`,{
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json',
-                    'authorization':user.token
+        try {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/card`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': user.token
                 },
-                body:JSON.stringify({front,back,deck})
+                body: JSON.stringify({ front, back, deck })
             })
-            const json = await response.json() 
-            if(!response.ok){
+            const json = await response.json()
+            if (!response.ok) {
                 return toast.error(json.message)
             }
-            setAdded((p)=>p+1)
+            setAdded((p) => p + 1)
             setFront('')
             setBack('')
-            return toast.success(json.message) 
+            return toast.success(json.message)
         }
-        catch(e){
+        catch (e) {
             return toast.error(e.message)
         }
     }
 
-
+  
     if (!user)
         return <h3>User auth failed</h3>
-    if(loading)
-        return <Loader/>
+    if (loading)
+        return <Loader />
     return (
         <Container>
             <Box as={motion.div}
@@ -169,17 +176,20 @@ function AddCard() {
                 animate={{ y: 0, scale: 1 }}
                 transition={{ type: 'sneek' }}
             >
-                <h3>Word</h3>
-                <Input value={front} onChange={(e)=>setFront(e.target.value)} />
-                <h3>Meaning</h3>
-                <Input value={back} onChange={(e)=>setBack(e.target.value)} />
+                <h3>Front</h3>
+                <Input value={front} onChange={(e) => setFront(e.target.value)} />
+
+                <h3>Back</h3>
+                <Input value={back} onChange={(e) => setBack(e.target.value)} style={{ display: 'none' }} />
+                <Textarea value={back} onChange={(e)=>setBack(e.target.value)} /> 
                 <h3>Deck</h3>
                 <div
                     style={{ zIndex: '1000', width: '90%', margin: '5px' }}
                 >
                     <Select styles={colourStyles} options={options} onChange={handleSelectChange} />
                 </div>
-                <br />
+                <br />  
+
                 <Button onClick={addCard}>
                     Add
                 </Button>

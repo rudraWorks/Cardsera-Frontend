@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { Button as Btn } from '../pages/Practice'
 import useModal from '../Hooks/useModal'
 import CardDetails from '../modalViews/CardDetails'
 import Confirm from '../modalViews/Confirm'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import useUser from '../Hooks/useUser'
 
+
 const Box = styled.div`
-  min-height:220px;
+  // min-height:220px;
   width:100%;
   display:flex;
   flex-direction:column;
@@ -21,25 +21,32 @@ const Box = styled.div`
   border:1px solid skyblue;
 `
 const Bottom = styled.div`
-  margin-top:auto;
   width:100%;
   height:40px; 
-  // background:gray;
   display:flex;
+  justify-content:center;
+  position:absolute;
+  bottom:2px;
 `
 const Button = styled.button`
-  width:50%;
-  // margin:2px;
-  margin-top:5px;
+  width:100px;
+  margin:2px;
+  background:gray;
+  margin-top:7px;
   border:none;
   border-radius:6px;
   cursor:pointer;
   color:white;
   &:nth-child(1){
     background:tomato;
-    margin-right:3px;
   }
   &:nth-child(1):hover{
+    background:#df563e;
+  }
+  &:nth-child(3){
+    background:tomato; 
+  }
+  &:nth-child(3):hover{
     background:#df563e;
   }
   &:nth-child(2){
@@ -47,6 +54,12 @@ const Button = styled.button`
   }
   &:nth-child(2):hover{
     background:green;
+  }
+  &:nth-child(4){
+    background:orange;
+  }
+  &:nth-child(4):hover{
+    background:darkorange;
   }
 `
 const Word = styled.div`
@@ -69,18 +82,17 @@ const Word = styled.div`
 const Meaning = styled.div`
   width:100%;
   min-height:105px;
+  max-height:300px;
   margin-top:7px;
-  text-align:center;
   font-size:20px;
   border-radius:6px;
   background:lightgreen;
-  border:1px solid #77c577;
-    display:flex;
-  align-items:center;
-  justify-content:center;
+  border:1px solid lightgray;
+  padding:10px;
+  overflow-y:scroll;
 `
 const Show = styled.button`
-  width:100%;
+  width:200px;
   height:40px;
   margin-top:5px;
   background:lightgreen;
@@ -116,12 +128,20 @@ const Status = styled.div`
     color:red;
   }
 `
+
+const Pre = styled.pre`
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+`
 function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
   const [showMeaning, setShowMeaning] = useState(false)
   const { dispatchModal } = useModal()
-  const {user} = useUser()
+  const { user } = useUser()
 
-  const know = () => { 
+  const know = () => {
     setShowMeaning(false)
     handleKnow()
   }
@@ -129,36 +149,38 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
     setShowMeaning(false)
     handleDontKnow()
   }
-  
+
 
   const deleteCard = async () => {
-    try{
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/card`,{
-        method:'DELETE',
-        headers:{
-          'Content-Type':'application/json',
-          'authorization':user.token
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/card`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': user.token
         },
-        body:JSON.stringify({cardId:wordProp.cardId,deck:wordProp.deck})
-      }) 
+        body: JSON.stringify({ cardId: wordProp.cardId, deck: wordProp.deck })
+      })
       const json = await response.json()
-      if(!response.ok){
-        toast.error(json.message) 
+      if (!response.ok) {
+        toast.error(json.message)
       }
-      else{
+      else {
         // toast.success(json.message)
         handleKnow()
       }
     }
-    catch(e){
+    catch (e) {
       toast.error(e.message)
     }
   }
 
   return (
-    <center>
-
+    <>
+      <Status>  <span> Don't know: {progress.dontKnow}</span> <span>Know: {progress.know} </span></Status>
+      <br />
       <Box>
+
         <Word style={showMeaning ? { height: '40px' } : { height: '150px', fontSize: '40px', transitionDuration: '.1s' }}>{wordProp.front} </Word>
         {
           showMeaning &&
@@ -167,28 +189,29 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
 
-          >{wordProp.back}</Meaning>
+          ><Pre>{wordProp.back}</Pre></Meaning>
         }
+
+      </Box >
+      <Bottom>
         {!showMeaning && <Show onClick={() => setShowMeaning(true)} >Show meaning</Show>}
-        {showMeaning && <Bottom>
+        {showMeaning && <>
           <Button onClick={dontKnow}>Don't Know</Button>
           <Button onClick={know}>Know</Button>
-        </Bottom>
+          <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm deleteCard={deleteCard} /> })} >
+            Delete
+          </Button>
+
+          <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <CardDetails card={wordProp} /> })
+          }>
+            Details
+          </Button>
+        </>
         }
-      </Box>
-      <br />
-      <Status>  <span> Don't know: {progress.dontKnow}</span> <span>Know: {progress.know} </span></Status>
-      <br />
-      <Btn onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm deleteCard={deleteCard} /> }) } >
-        Delete
-      </Btn>
+      </Bottom>
 
 
-      <Btn onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <CardDetails card={wordProp} /> })
-      }>
-        Details
-      </Btn>
-    </center>
+    </>
   )
 }
 
