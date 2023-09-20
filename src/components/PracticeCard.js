@@ -86,7 +86,7 @@ const Meaning = styled.div`
   margin-top:7px;
   font-size:20px;
   border-radius:6px;
-  background:lightgreen;
+  background:#fff176;
   border:1px solid lightgray;
   padding:10px;
   overflow-y:scroll;

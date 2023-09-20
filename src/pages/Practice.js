@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
-import Card from '../components/Card'
+import Card from '../components/PracticeCard'
 import useUser from '../Hooks/useUser'
 import { toast } from 'react-toastify'
 import shuffle from '../utils/shuffleArray'

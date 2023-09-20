@@ -6,7 +6,8 @@ import { toast } from 'react-toastify'
 import Loader from '../components/Loader'
 import formatChange from '../utils/dateFormatChanger'
 import Chart from '../components/Chart'
-import {Button} from '../pages/Practice'
+import { Button } from '../pages/Practice'
+import DeckCard from '../components/DeckCard'
 
 const Container = styled.div`
   display:flex;
@@ -20,7 +21,9 @@ const Card = styled.div`
   margin:10px;
   border-radius:10px;
   padding:15px;
+  color:gray;
 `
+
 
 const Hr = styled.hr`
   background-color:skyblue;
@@ -28,23 +31,15 @@ const Hr = styled.hr`
   border:none;
   margin-bottom:10px;
 `
-const Box = styled.div`
-  background:gainsboro;
-  margin-top:5px;
-  display:flex;
-  flex-direction:column;
-  padding:4px;
-  border-radius:5px;
-  font-weight:bolder;
-`
+
 function Stats() {
   const { user } = useUser()
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [dayWiseReviews,setDayWiseReviews] = useState([])
-  const [dayWiseAccuracies,setDayWiseAccuracies] = useState([])
-  const [toggleAccuracy,setToggleAccuracy] = useState(true)
-  const [chartData,setChartData] = useState([])
+  const [dayWiseReviews, setDayWiseReviews] = useState([])
+  const [dayWiseAccuracies, setDayWiseAccuracies] = useState([])
+  const [toggleAccuracy, setToggleAccuracy] = useState(true)
+  const [chartData, setChartData] = useState([])
 
   useEffect(() => {
     if (!user)
@@ -64,16 +59,16 @@ function Stats() {
         setLoading(false)
         if (!response.ok) {
           return toast.error(json.message)
-        } 
-        setData(json) 
-        const dwr = json.day.map((item)=>{ 
-          return {time:formatChange(item.date),value:item.totalReviewed}
+        }
+        setData(json)
+        const dwr = json.day.map((item) => {
+          return { time: formatChange(item.date), value: item.totalReviewed }
         })
-        const dwa = json.day.map((item)=>{
-          return {time:formatChange(item.date),value:(item.correct*100)/item.totalReviewed}
+        const dwa = json.day.map((item) => {
+          return { time: formatChange(item.date), value: (item.correct * 100) / item.totalReviewed }
         })
         setDayWiseReviews(dwr)
-        setDayWiseAccuracies(dwa) 
+        setDayWiseAccuracies(dwa)
         setChartData(dwa)
       }
       catch (e) {
@@ -85,15 +80,15 @@ function Stats() {
 
   }, [user])
 
-  useEffect(()=>{
-    if(toggleAccuracy){
+  useEffect(() => {
+    if (toggleAccuracy) {
       setChartData(dayWiseAccuracies)
     }
-    else setChartData(dayWiseReviews) 
-  },[toggleAccuracy])
+    else setChartData(dayWiseReviews)
+  }, [toggleAccuracy])
 
   const handleChangeData = () => {
-    setToggleAccuracy((p)=>!p)
+    setToggleAccuracy((p) => !p)
   }
 
   if (!user)
@@ -104,49 +99,46 @@ function Stats() {
     <Container
       as={motion.div}
       initial={{ y: '100vh' }}
-      animate={{ y: 0 }} 
+      animate={{ y: 0 }}
       transition={{ type: 'sneek' }}
     >
       <Card>
-        <Button onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy':'Reviews'}</Button>
+        <Button onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button>
         <Chart chartData={chartData} />
-        <h3 style={{marginLeft:'10px',marginTop:'10px'}}>x-axis: date <br/> y-axis: {toggleAccuracy?'Accuracy':'number of cards reviewed'}</h3>
+        <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'number of cards reviewed'}</h3>
 
       </Card>
 
-        <Card>
-          <h1>Today</h1>
-          <Hr />
-          <h3>Total reviewed: {data?.today.totalReviewed || 0}</h3>
-          <h3>Correct: {data?.today.correct || 0}</h3>
-          <h3>Incorrect: {data?.today.incorrect || 0}</h3>
-          <h3>Accuracy: {(data?.today.correct * 100 / data?.today.totalReviewed).toFixed(0)}%</h3>
+      <Card>
+        <h1 style={{color:'black'}}>Today</h1>
+        <Hr />
+        <h3>Total reviewed: {data?.today.totalReviewed || 0}</h3>
+        <h3>Correct: {data?.today.correct || 0}</h3>
+        <h3>Incorrect: {data?.today.incorrect || 0}</h3>
+        <h3>Accuracy: {(data?.today.correct * 100 / data?.today.totalReviewed).toFixed(0)}%</h3>
 
-        </Card>
-        <Card>
-          <h1>General</h1>
-          <Hr />
-          <h3>Total cards: {data?.general.totalCards || 0}</h3>
-          <h3>Last added on: {data?.general.lastAddedDate ? new Date(data?.general.lastAddedDate).toLocaleDateString('en-GB') : 'NA'}</h3>
-          <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB') : 'NA'}</h3>
+      </Card>
+      <Card>
+        <h1 style={{color:'black'}}>General</h1>
+        <Hr />
+        <h3>Total cards: {data?.general.totalCards || 0}</h3>
+        <h3>Last added on: {data?.general.lastAddedDate ? new Date(data?.general.lastAddedDate).toLocaleDateString('en-GB') : 'NA'}</h3>
+        <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB') : 'NA'}</h3>
 
-        </Card>
-        <Card style={{maxHeight:'300px',overflowY:'scroll'}}>
-          <h1>Decks</h1>
-          <Hr />
-          <h3>Total decks: {data?.decks.totalDecks || 0}</h3>
+      </Card>
+      <Card style={{ maxHeight: '500px', overflowY: 'scroll' }}>
+        <h1 style={{color:'black'}}>Decks</h1>
+        <Hr />
+        <h3>Total decks: {data?.decks.totalDecks || 0}</h3>
+        <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
           { 
             data?.decks?.allDecks.map(deck => {
-              return <Box key={deck.name}>
-                <span>Deck name: {deck.name} </span>
-                <span>Total cards: {deck.totalCards}</span>
-                <span>Created on: {new Date(deck.dateCreated).toLocaleDateString('en-gb')}</span>
-              </Box>
+              return <DeckCard key={deck.name} userToken={user.token} name={deck.name} share={deck.share} totalCards={deck.totalCards} createdOn={deck.dateCreated} id={deck._id} />
             })
           }
-
-        </Card>
-        <h3 style={{margin:'10px'}}>Current time: {new Date().toUTCString()}</h3>
+        </div>
+      </Card>
+      <span style={{ margin: '10px',color:'gray' }}>Current time: {new Date().toUTCString()}</span>
 
     </Container>
   )
