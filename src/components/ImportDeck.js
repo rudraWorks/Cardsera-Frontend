@@ -5,7 +5,7 @@ function ImportDeck({setDeckId,deckId}) {
     return (
         <Box style={{border:'none',padding:'0'}}>
             <h3 style={{fontWeight:'300'}}>Deck ID</h3>
-            <Input value={deckId} onInput={(e)=>setDeckId(e.target.value)} />
+            <Input placeholder='9998cc3ce4dc4251b49a8def' value={deckId} onInput={(e)=>setDeckId(e.target.value)} />
         </Box>
     )
 } 

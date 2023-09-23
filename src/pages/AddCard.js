@@ -86,6 +86,7 @@ const Textarea = styled.textarea`
     width:90%;
     height:150px;
     resize:none;
+    font-size:20px;
     padding:10px;
     border:1px solid skyblue;
     border-radius:5px;
@@ -227,14 +228,13 @@ function AddCard() {
                         <ImportDeck setDeckId={setDeckId} deckId={deckId} /> :
                         <>
                             <h3>Card front</h3>
-                            <Input value={front} onChange={(e) => setFront(e.target.value)} />
+                            <Input placeholder='Any problem/question/vocabulary...' value={front} onChange={(e) => setFront(e.target.value)} />
                             <br />
                             <h3>Card back</h3>
-                            <Input value={back} onChange={(e) => setBack(e.target.value)} style={{ display: 'none' }} />
-                            <Textarea value={back} onChange={(e) => setBack(e.target.value)} />
+                            <Textarea placeholder='Solution/answer/meaning...' value={back} onChange={(e) => setBack(e.target.value)} />
                         </>
                 }
-                <br />
+                <br /> 
                 <h3>Create/select a deck</h3>
                 <div
                     style={{ zIndex: '1000', width: '90%', margin: '5px' }}

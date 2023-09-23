@@ -105,6 +105,8 @@ function Progress() {
       transition={{ type: 'sneek' }}
     >
       <Card>
+      <h1 style={{color:'black'}}>Progress</h1>
+
         <Chart chartData={chartData} />
       
         <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'Cards reviewed'}</h3>
