@@ -105,9 +105,10 @@ function Progress() {
       transition={{ type: 'sneek' }}
     >
       <Card>
-        <Button onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button>
         <Chart chartData={chartData} />
+      
         <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'Cards reviewed'}</h3>
+        <Button style={{marginBottom:0}} onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button>
 
       </Card>
 
