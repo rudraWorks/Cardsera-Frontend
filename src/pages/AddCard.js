@@ -158,15 +158,17 @@ function AddCard() {
             const json = await response.json()
             setAdding(false)
             if (!response.ok) {
-                return toast.error(json.message)
+                toast.error(json.message)
             }
-            setAdded((p) => p + 1)
-            setFront('')
-            setBack('')
-            return toast.success(json.message)
+            else {
+                setAdded((p) => p + 1)
+                setFront('')
+                setBack('')
+                toast.success(json.message)
+            }
         }
         catch (e) {
-            return toast.error(e.message)
+             toast.error(e.message)
         }
         setAdding(false)
 
@@ -183,7 +185,7 @@ function AddCard() {
                     'Content-Type': 'application/json',
                     'authorization': user.token
                 },
-                body: JSON.stringify({ deckId,deckName:deck})
+                body: JSON.stringify({ deckId, deckName: deck })
             })
 
             const json = await response.json()
@@ -192,6 +194,8 @@ function AddCard() {
                 toast.error(json.message)
             else {
                 toast.success(json.message)
+                setAdded((p) => p + 1)
+                setDeckId('')
             }
         }
         catch (e) {

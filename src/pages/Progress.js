@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import Loader from '../components/Loader'
 import formatChange from '../utils/dateFormatChanger'
 import Chart from '../components/Chart'
-import { Button } from '../pages/Practice'
+import { Button } from './Practice'
 import DeckCard from '../components/DeckCard'
 import { useNavigate } from 'react-router-dom'
 
@@ -30,7 +30,7 @@ const Card = styled.div`
 `
 
 
-function Stats() {
+function Progress() {
   const { user } = useUser()
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -107,7 +107,7 @@ function Stats() {
       <Card>
         <Button onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button>
         <Chart chartData={chartData} />
-        <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'number of cards reviewed'}</h3>
+        <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'Cards reviewed'}</h3>
 
       </Card>
 
@@ -143,4 +143,4 @@ function Stats() {
   )
 }
 
-export default Stats
+export default Progress

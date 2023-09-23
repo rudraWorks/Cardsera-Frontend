@@ -18,6 +18,7 @@ const Box = styled.div`
   border-radius:10px;
   background:aliceblue;
   border:1px solid skyblue;
+
 `
 const Bottom = styled.div`
   width:100%;
@@ -60,6 +61,7 @@ const Button = styled.button`
   &:nth-child(4):hover{
     background:darkorange;
   }
+
 `
 const Word = styled.div`
   width:100%;
@@ -76,6 +78,7 @@ const Word = styled.div`
   padding:10px;
   border-radius:6px;
   text-align:center;
+  user-select:text;
 `
 const Meaning = styled.div`
   width:100%;
@@ -88,6 +91,7 @@ const Meaning = styled.div`
   border:1px solid lightgray;
   padding:10px;
   overflow-y:scroll;
+  user-select:text;
 `
 const Show = styled.button`
   width:290px;

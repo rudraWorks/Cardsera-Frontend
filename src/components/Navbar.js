@@ -12,9 +12,9 @@ const Container = styled.div`
     display:flex;
     align-items:center;
     // justify-content:center;
-    padding:10px;
+    padding:15px;
+    padding-top:30px;
     height:30px;
-    padding:30px;
     &>a{
         text-decoration:none;
         color:white;
@@ -84,9 +84,9 @@ function Navbar() {
                         </motion.div>
                     </NavLink>
 
-                    <NavLink to={'/stats'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                    <NavLink to={'/progress'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                         <motion.div transition={transitionVariants} whileHover={hoverVariants}>
-                            Stats
+                            Progress
                         </motion.div>
                     </NavLink>
                 </>

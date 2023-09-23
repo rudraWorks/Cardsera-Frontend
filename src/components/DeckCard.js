@@ -94,7 +94,7 @@ function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck
             <small> {id} </small>
             <br />
             <span style={{ display: 'flex', alignItems: 'center' ,width:'100%'}}>
-                Share? &nbsp; <input disabled={disabled} onChange={handleShare} checked={checked} type='checkbox' />
+                Public? &nbsp; <input disabled={disabled} onChange={handleShare} checked={checked} type='checkbox' />
                 <Delete onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this deck?"} deleteItem={handleDelete} /> })}>Delete</Delete>
             </span>
         </Container>

@@ -3,7 +3,7 @@ import Root from './pages/Root';
 import Home from './pages/Home';
 import Practice from './pages/Practice';
 import AddCard from './pages/AddCard';
-import Stats from './pages/Stats';
+import Progress from './pages/Progress';
 import UserState from './contexts/user/UserState';
 import ModalState from './contexts/Modal/ModalState';
 
@@ -25,8 +25,8 @@ const router = createBrowserRouter([
         element: <AddCard />
       },
       {
-        path: 'stats',
-        element: <Stats />
+        path: 'progress',
+        element: <Progress />
       }
     ]
   }

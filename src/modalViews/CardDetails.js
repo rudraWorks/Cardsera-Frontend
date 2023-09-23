@@ -26,7 +26,6 @@ function CardDetails({ card }) {
             <h3>Correct: <span>{card.correct}</span></h3>
             <h3>Incorrect: <span>{card.incorrect}</span></h3>
             <h3>Accuracy: <span>{((card.correct*100)/(card.correct+card.incorrect)).toFixed(0)}%</span></h3>
-
         </Container>
     )
 }

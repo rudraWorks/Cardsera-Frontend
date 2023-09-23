@@ -22,15 +22,15 @@ const Bottom = styled.div`
     margin-top:auto;
     text-align:center;
     padding:5px;
-    background:#e0e8ef;
-    border-top:1px solid skyblue;
+    // background:gray;/
+    // border-top:1px solid skyblue;
 `
 const OutletContainer = styled.div`
     padding:20px;
     overflow-x:hidden;
     height:100%;
-    padding-bottom:0;
-    padding-top:20px;
+    padding-bottom:5px;
+    margin-top:20px;
 `
 
 function Root() {
