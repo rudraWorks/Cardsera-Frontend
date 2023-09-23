@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import Select from 'react-select/creatable'
@@ -6,12 +6,14 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useUser from '../Hooks/useUser';
 import Loader from '../components/Loader';
+import ImportDeck from '../components/ImportDeck';
 
- 
-const Container = styled.div`
-    margin-top:30px;
+
+export const Container = styled.div`
     display:flex;
     justify-content:center; 
+    align-items:center;
+    flex-direction:column;
 `
 export const Box = styled.div`
     width:100%;
@@ -22,15 +24,17 @@ export const Box = styled.div`
     align-items:center;
     border-radius:10px;
     padding:10px;
-    border-radius:10px;
+    border-radius:10px; 
     background:aliceblue;
-    border:1px solid skyblue;
+    border:1px solid skyblue; 
+    &>h3{
+        font-weight:300;
+    }
 `
-const Input = styled.input`
+export const Input = styled.input`
     padding:5px;
     font-size:20px;
     width:90%;
-    margin:5px;
     border-radius:5px;
     border:none;
     border:1px solid skyblue;
@@ -80,7 +84,7 @@ const Button = styled.button`
 
 const Textarea = styled.textarea`
     width:90%;
-    height:200px;
+    height:150px;
     resize:none;
     padding:10px;
     border:1px solid skyblue;
@@ -100,16 +104,15 @@ function AddCard() {
     const [front, setFront] = useState('')
     const [back, setBack] = useState('')
     const [deck, setDeck] = useState('')
-
+    const [adding, setAdding] = useState(false)
     const [added, setAdded] = useState(0)
+    const [importFlag, setImportFlag] = useState(false)
+    const [deckId, setDeckId] = useState('')
 
-    const editor = useRef(null);
 
     useEffect(() => {
 
         const loadDecks = async () => {
-            if (!user)
-                return
             try {
                 const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/decks`, {
                     method: 'GET',
@@ -130,7 +133,8 @@ function AddCard() {
                 return toast.error(e.message)
             }
         }
-        loadDecks()
+        if (user && user !== 'LOADING')
+            loadDecks()
     }, [user, added])
 
 
@@ -141,6 +145,7 @@ function AddCard() {
     const addCard = async () => {
         if (!front || !back || !deck)
             return toast.error('Invalid input')
+        setAdding(true)
         try {
             const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/card`, {
                 method: 'POST',
@@ -151,6 +156,7 @@ function AddCard() {
                 body: JSON.stringify({ front, back, deck })
             })
             const json = await response.json()
+            setAdding(false)
             if (!response.ok) {
                 return toast.error(json.message)
             }
@@ -162,37 +168,82 @@ function AddCard() {
         catch (e) {
             return toast.error(e.message)
         }
+        setAdding(false)
+
     }
 
-  
+    const importDeck = async () => {
+        if (!deckId || !deck)
+            return toast.error('Invalid input')
+        setAdding(true)
+        try {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/importDeck`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': user.token
+                },
+                body: JSON.stringify({ deckId,deckName:deck})
+            })
+
+            const json = await response.json()
+            setAdding(false)
+            if (!response.ok)
+                toast.error(json.message)
+            else {
+                toast.success(json.message)
+            }
+        }
+        catch (e) {
+            toast.error(e.message)
+        }
+        setAdding(false)
+
+    }
+
     if (!user)
         return <h3>User auth failed</h3>
     if (loading)
         return <Loader />
     return (
         <Container>
+
             <Box as={motion.div}
                 initial={{ y: '100vh', scale: 0 }}
                 animate={{ y: 0, scale: 1 }}
                 transition={{ type: 'sneek' }}
             >
-                <h3>Front</h3>
-                <Input value={front} onChange={(e) => setFront(e.target.value)} />
-
-                <h3>Back</h3>
-                <Input value={back} onChange={(e) => setBack(e.target.value)} style={{ display: 'none' }} />
-                <Textarea value={back} onChange={(e)=>setBack(e.target.value)} /> 
-                <h3>Deck</h3>
+                <p style={{ color: 'black', width: '100%' }}>
+                    <span onClick={() => setImportFlag((p) => !p)} style={{ cursor: 'pointer', fontSize: '15px', padding: '3px', borderRadius: '5px' }}>
+                        <u>{importFlag ? 'Add card' : 'Import deck'}</u>
+                    </span>
+                </p>
+                {
+                    importFlag ?
+                        <ImportDeck setDeckId={setDeckId} deckId={deckId} /> :
+                        <>
+                            <h3>Card front</h3>
+                            <Input value={front} onChange={(e) => setFront(e.target.value)} />
+                            <br />
+                            <h3>Card back</h3>
+                            <Input value={back} onChange={(e) => setBack(e.target.value)} style={{ display: 'none' }} />
+                            <Textarea value={back} onChange={(e) => setBack(e.target.value)} />
+                        </>
+                }
+                <br />
+                <h3>Create/select a deck</h3>
                 <div
                     style={{ zIndex: '1000', width: '90%', margin: '5px' }}
                 >
                     <Select styles={colourStyles} options={options} onChange={handleSelectChange} />
                 </div>
-                <br />  
-
-                <Button onClick={addCard}>
-                    Add
-                </Button>
+                <br />
+                {
+                    importFlag ?
+                        <Button onClick={importDeck} disabled={adding}> {adding ? 'Importing...' : 'Import deck'} </Button>
+                        :
+                        <Button onClick={addCard} disabled={adding}> {adding ? 'Adding...' : 'Add card'} </Button>
+                }
             </Box>
         </Container>
     )

@@ -12,9 +12,6 @@ import Loader from '../components/Loader'
 const Container = styled.div`
   display:flex;
   flex-direction:column;
-  // align-items:center;
-  margin-top:30px;
-  // background:gray;
   height:90%;
 `
 const ControlButtons = styled.div`

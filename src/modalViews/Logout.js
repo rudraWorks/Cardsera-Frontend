@@ -21,6 +21,7 @@ const Button = styled.button`
   &:hover{
     background:tomato;
   }
+  color:white;
 `
 function Logout() {
   const { user, dispatch } = useUser()

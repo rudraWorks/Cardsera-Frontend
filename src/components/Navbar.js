@@ -11,6 +11,7 @@ import useModal from '../Hooks/useModal'
 const Container = styled.div` 
     display:flex;
     align-items:center;
+    // justify-content:center;
     padding:10px;
     height:30px;
     padding:30px;
@@ -27,8 +28,6 @@ const Container = styled.div`
             margin-right:15px;
         }
     }
-    background:lightgray;
-    border-bottom:1px solid gray;
     z-index:1000;
 `
 const LogoutDiv = styled.div`
@@ -64,7 +63,6 @@ function Navbar() {
             transition={{ type: 'spring', stiffness: 120 }}
         >
             {modal && <Modal />}
-
             <NavLink to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                 <motion.div transition={transitionVariants} whileHover={hoverVariants}>
                     Home

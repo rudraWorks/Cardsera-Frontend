@@ -8,6 +8,7 @@ import formatChange from '../utils/dateFormatChanger'
 import Chart from '../components/Chart'
 import { Button } from '../pages/Practice'
 import DeckCard from '../components/DeckCard'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
   display:flex;
@@ -15,22 +16,19 @@ const Container = styled.div`
   border-radius:10px;
 `
 const Card = styled.div`
-  min-height:200px;
   background:aliceblue;
   border:1px solid skyblue;
   margin:10px;
   border-radius:10px;
   padding:15px;
-  color:gray;
+  &>h1{
+    font-weight:300;
+  }
+  &>h3{
+    font-weight:200; 
+  }
 `
 
-
-const Hr = styled.hr`
-  background-color:skyblue;
-  height:1px;
-  border:none;
-  margin-bottom:10px;
-`
 
 function Stats() {
   const { user } = useUser()
@@ -40,10 +38,9 @@ function Stats() {
   const [dayWiseAccuracies, setDayWiseAccuracies] = useState([])
   const [toggleAccuracy, setToggleAccuracy] = useState(true)
   const [chartData, setChartData] = useState([])
-
+  const navigate = useNavigate()
   useEffect(() => {
-    if (!user)
-      return
+
     setLoading(true)
     const loadData = async () => {
       try {
@@ -76,7 +73,8 @@ function Stats() {
       }
       setLoading(false)
     }
-    loadData()
+    if(user && user!=='LOADING')
+      loadData()
 
   }, [user])
 
@@ -86,14 +84,18 @@ function Stats() {
     }
     else setChartData(dayWiseReviews)
   }, [toggleAccuracy])
-
+ 
   const handleChangeData = () => {
     setToggleAccuracy((p) => !p)
   }
 
+  const updateDeck = (deckId) =>{
+    navigate(0)
+  }
+
   if (!user)
     return <h3>User auth failed</h3>
-  if (loading)
+  if (loading) 
     return <Loader />
   return (
     <Container
@@ -111,7 +113,6 @@ function Stats() {
 
       <Card>
         <h1 style={{color:'black'}}>Today</h1>
-        <Hr />
         <h3>Total reviewed: {data?.today.totalReviewed || 0}</h3>
         <h3>Correct: {data?.today.correct || 0}</h3>
         <h3>Incorrect: {data?.today.incorrect || 0}</h3>
@@ -120,7 +121,6 @@ function Stats() {
       </Card>
       <Card>
         <h1 style={{color:'black'}}>General</h1>
-        <Hr />
         <h3>Total cards: {data?.general.totalCards || 0}</h3>
         <h3>Last added on: {data?.general.lastAddedDate ? new Date(data?.general.lastAddedDate).toLocaleDateString('en-GB') : 'NA'}</h3>
         <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB') : 'NA'}</h3>
@@ -128,12 +128,11 @@ function Stats() {
       </Card>
       <Card style={{ maxHeight: '500px', overflowY: 'scroll' }}>
         <h1 style={{color:'black'}}>Decks</h1>
-        <Hr />
         <h3>Total decks: {data?.decks.totalDecks || 0}</h3>
-        <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
+        <div style={{display:'flex',flexWrap:'wrap'}}>
           { 
             data?.decks?.allDecks.map(deck => {
-              return <DeckCard key={deck.name} userToken={user.token} name={deck.name} share={deck.share} totalCards={deck.totalCards} createdOn={deck.dateCreated} id={deck._id} />
+              return <DeckCard key={deck.name} userToken={user.token} name={deck.name} share={deck.share} totalCards={deck.totalCards} updateDeck={updateDeck} createdOn={deck.dateCreated} id={deck._id} />
             })
           }
         </div>

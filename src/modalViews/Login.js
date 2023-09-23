@@ -59,7 +59,7 @@ function Login() {
 
     return (
         <Container>
-            <h2>Login to Vocucards</h2>
+            <h2>Login/Register</h2>
             <br/>
             <br/>
             <div id='signinDiv'></div> 

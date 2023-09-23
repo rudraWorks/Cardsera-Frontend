@@ -9,13 +9,12 @@ import useUser from '../Hooks/useUser'
 
 
 const Box = styled.div`
-  // min-height:220px;
   width:100%;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding:10px;
+  padding:5px;
   border-radius:10px;
   background:aliceblue;
   border:1px solid skyblue;
@@ -68,16 +67,15 @@ const Word = styled.div`
   background: #6190E8;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #A7BFE8, #6190E8);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #A7BFE8, #6190E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+
   color:white;  
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:20px;
-  padding:2px;
+  padding:10px;
   border-radius:6px;
-  // border:1px solid gray;
-
+  text-align:center;
 `
 const Meaning = styled.div`
   width:100%;
@@ -86,13 +84,13 @@ const Meaning = styled.div`
   margin-top:7px;
   font-size:20px;
   border-radius:6px;
-  background:#fff176;
+  background:lightgray;
   border:1px solid lightgray;
   padding:10px;
   overflow-y:scroll;
 `
 const Show = styled.button`
-  width:200px;
+  width:290px;
   height:40px;
   margin-top:5px;
   background:lightgreen;
@@ -168,6 +166,8 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
       else {
         // toast.success(json.message)
         handleKnow()
+        setShowMeaning(false)
+
       }
     }
     catch (e) {
@@ -181,7 +181,9 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
       <br />
       <Box>
 
-        <Word style={showMeaning ? { height: '40px' } : { height: '150px', fontSize: '40px', transitionDuration: '.1s' }}>{wordProp.front} </Word>
+        <Word style={showMeaning ? { height: 'fit-content' } : { fontSize: '40px',minHeight:'100px', transitionDuration: '.1s' }}>
+          {wordProp.front} 
+        </Word> 
         {
           showMeaning &&
           <Meaning
@@ -198,7 +200,7 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
         {showMeaning && <>
           <Button onClick={dontKnow}>Don't Know</Button>
           <Button onClick={know}>Know</Button>
-          <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm deleteCard={deleteCard} /> })} >
+          <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this card?"} deleteItem={deleteCard} /> })} >
             Delete
           </Button>
 
@@ -208,7 +210,7 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
           </Button>
         </>
         }
-      </Bottom>
+      </Bottom> 
 
 
     </>

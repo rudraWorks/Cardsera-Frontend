@@ -12,6 +12,10 @@ const Container = styled.div`
     border-radius: 0px;
     display:flex;
     flex-direction:column;
+    background: #C9D6FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 `
 const Bottom = styled.div`
     display:none;
@@ -26,6 +30,7 @@ const OutletContainer = styled.div`
     overflow-x:hidden;
     height:100%;
     padding-bottom:0;
+    padding-top:20px;
 `
 
 function Root() {

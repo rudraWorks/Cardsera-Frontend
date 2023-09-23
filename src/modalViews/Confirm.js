@@ -9,15 +9,15 @@ const Container = styled.div`
     justify-content:center;
     flex-direction:column;
 `
-function Confirm({deleteCard}) {
+function Confirm({deleteItem,message}) {
     const {dispatchModal} = useModal()
     const handleDelete = () => {
-        deleteCard()
+        deleteItem()
         dispatchModal({type:'CLOSE'})
     }
     return (
         <Container>
-            <h3>Are you sure?</h3>
+            <h3>{message}</h3> 
             <br/>
             <div>
                 <Button onClick={handleDelete}>Yes</Button>
