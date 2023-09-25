@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import Signup from '../components/Signup'
+import useUser from '../Hooks/useUser'
 
 const Container = styled.div`
 `
@@ -27,6 +29,9 @@ const Main = styled.main`
 
 const Section = styled.section`
   margin-bottom: 2rem;
+  &>p{
+    text-align:justify;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -37,10 +42,12 @@ const SectionTitle = styled.h2`
 const List = styled.ul`
   padding-left: 1.5rem;
   margin-top: 0.5rem;
+
 `;
 
 const ListItem = styled.li`
   margin-bottom: 0.5rem;
+  text-align:justify;
 `;
 
 const Footer = styled.footer`
@@ -53,6 +60,8 @@ const Footer = styled.footer`
 
 
 function Home() {
+  const {user} = useUser()
+
   return (
     <Container
       as={motion.div}
@@ -66,10 +75,14 @@ function Home() {
       </Header>
       <Main>
         <Section>
-          <SectionTitle>What is Cardsera?</SectionTitle>
-          <p>Cardsera is your personal gateway to effective and engaging learning. It's the ultimate platform for interactive learning, allowing you to transform information into knowledge effortlessly.</p>
+          <p>Unlock the full potential of your learning journey with Cardsera. Our innovative platform utilizes the science of <b> spaced repetition</b> to revolutionize the way you remember and comprehend information. No more struggling to retain knowledge or last-minute cramming sessions. Cardsera's intelligent algorithm adapts to your learning pace, ensuring you review each concept at precisely the right moment for optimal retention. Cardsera guarantees that what you learn stays with you for the long run. Welcome to a world where learning isn't just about acquiring information; it's about mastering it.</p>
+          <br/>
+          <video controls style={{ width: '100%' }} >
+            <source src='/videos/trim.mp4'></source>
+          </video>
+          <i><small>Ali Abdaal, a famous YouTuber and productivity coach. <a href='https://www.youtube.com/@aliabdaal' target='_blank' >Link</a></small></i>
         </Section>
-        <Section>
+        <Section> 
           <SectionTitle>How Does Cardsera Work?</SectionTitle>
           <List>
             <ListItem>Easily create interactive flashcards by entering questions and answers. The question goes on the front, and the answer on the back.</ListItem>
@@ -88,10 +101,7 @@ function Home() {
             <ListItem>Access your decks from your computer, tablet, or phone. Learning is at your fingertips.</ListItem>
           </List>
         </Section>
-        <Section>
-          <SectionTitle>Revise Your Decks Anytime</SectionTitle>
-          <p>Whether you're preparing for interviews or simply want to stay sharp, Cardsera allows you to revise your decks every day. Stay ahead and be at your best!</p>
-        </Section>
+        { !user && <Signup/> }
       </Main>
       <Footer>
         <p>Join thousands of learners who have unlocked the power of interactive learning with Cardsera. Start your journey to knowledge mastery today!</p>
