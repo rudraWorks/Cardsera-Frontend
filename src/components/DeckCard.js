@@ -32,7 +32,7 @@ const Delete = styled.button`
     border-radius:5px;
 `
 
-function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck }) {
+function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck,imports}) {
     const [checked, setChecked] = useState(share === 1 ? true : false)
     const [disabled, setDisabled] = useState(false)
     const { dispatchModal } = useModal() 
@@ -93,6 +93,8 @@ function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck
             <br />
             <small> {id} </small>
             <br />
+            <small> Imports: {imports} </small>
+            <br/>
             <span style={{ display: 'flex', alignItems: 'center' ,width:'100%'}}>
                 Public? &nbsp; <input disabled={disabled} onChange={handleShare} checked={checked} type='checkbox' />
                 <Delete onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this deck?"} deleteItem={handleDelete} /> })}>Delete</Delete>

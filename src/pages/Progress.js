@@ -135,7 +135,7 @@ function Progress() {
         <div style={{display:'flex',flexWrap:'wrap'}}>
           { 
             data?.decks?.allDecks.map(deck => {
-              return <DeckCard key={deck.name} userToken={user.token} name={deck.name} share={deck.share} totalCards={deck.totalCards} updateDeck={updateDeck} createdOn={deck.dateCreated} id={deck._id} />
+              return <DeckCard key={deck.name} imports={deck.imports} userToken={user.token} name={deck.name} share={deck.share} totalCards={deck.totalCards} updateDeck={updateDeck} createdOn={deck.dateCreated} id={deck._id} />
             })
           }
         </div>
