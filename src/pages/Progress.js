@@ -107,15 +107,7 @@ function Progress() {
       transition={{ type: 'sneek' }}
     >
 
-      <Card style={{ display: 'none' }}>
-        <h1 style={{ color: 'black' }}>Progress</h1>
 
-        <Chart chartData={chartData} />
-
-        <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'Cards reviewed'}</h3>
-        <Button style={{ marginBottom: 0 }} onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button>
-
-      </Card>
 
       <Card>
         <h1 style={{ color: 'black' }}>Today</h1>
@@ -143,8 +135,17 @@ function Progress() {
           }
         </div>
       </Card>
-      <Card style={{ padding: '15px' }}> 
-        <Heatmap dayWiseReviews={dayWiseReviews}/>
+      <Card style={{ padding: '15px' }}>
+        <Heatmap dayWiseReviews={dayWiseReviews} />
+      </Card>
+
+      <Card style={{ display: 'none' }}>
+
+        <Chart chartData={chartData} />
+
+        <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'Cards reviewed'}</h3>
+        <Button style={{ marginBottom: 0 }} onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button> 
+
       </Card>
 
       <span style={{ margin: '10px', color: 'gray' }}>Current time: {new Date().toUTCString()}</span>
