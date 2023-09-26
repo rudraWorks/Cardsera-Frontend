@@ -9,6 +9,8 @@ import Chart from '../components/Chart'
 import { Button } from './Practice'
 import DeckCard from '../components/DeckCard'
 import { useNavigate } from 'react-router-dom'
+import Heatmap from '../components/Heatmap'
+
 
 const Container = styled.div`
   display:flex;
@@ -73,7 +75,7 @@ function Progress() {
       }
       setLoading(false)
     }
-    if(user && user!=='LOADING')
+    if (user && user !== 'LOADING')
       loadData()
 
   }, [user])
@@ -84,18 +86,18 @@ function Progress() {
     }
     else setChartData(dayWiseReviews)
   }, [toggleAccuracy])
- 
+
   const handleChangeData = () => {
     setToggleAccuracy((p) => !p)
   }
 
-  const updateDeck = (deckId) =>{
+  const updateDeck = (deckId) => {
     navigate(0)
   }
 
   if (!user)
     return <h3>User auth failed</h3>
-  if (loading) 
+  if (loading)
     return <Loader />
   return (
     <Container
@@ -104,18 +106,22 @@ function Progress() {
       animate={{ y: 0 }}
       transition={{ type: 'sneek' }}
     >
-      <Card>
-      <h1 style={{color:'black'}}>Progress</h1>
+      <Card style={{ padding: '15px' }}> 
+        <Heatmap dayWiseReviews={dayWiseReviews}/>
+      </Card>
+
+      <Card style={{ display: 'none' }}>
+        <h1 style={{ color: 'black' }}>Progress</h1>
 
         <Chart chartData={chartData} />
-      
+
         <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'Cards reviewed'}</h3>
-        <Button style={{marginBottom:0}} onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button>
+        <Button style={{ marginBottom: 0 }} onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button>
 
       </Card>
 
       <Card>
-        <h1 style={{color:'black'}}>Today</h1>
+        <h1 style={{ color: 'black' }}>Today</h1>
         <h3>Total reviewed: {data?.today.totalReviewed || 0}</h3>
         <h3>Correct: {data?.today.correct || 0}</h3>
         <h3>Incorrect: {data?.today.incorrect || 0}</h3>
@@ -123,27 +129,27 @@ function Progress() {
 
       </Card>
       <Card>
-        <h1 style={{color:'black'}}>General</h1>
+        <h1 style={{ color: 'black' }}>General</h1>
         <h3>Total cards: {data?.general.totalCards || 0}</h3>
         <h3>Last added on: {data?.general.lastAddedDate ? new Date(data?.general.lastAddedDate).toLocaleDateString('en-GB') : 'NA'}</h3>
         <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB') : 'NA'}</h3>
 
       </Card>
       <Card style={{ maxHeight: '500px', overflowY: 'scroll' }}>
-        <h1 style={{color:'black'}}>Decks</h1>
+        <h1 style={{ color: 'black' }}>Decks</h1>
         <h3>Total decks: {data?.decks.totalDecks || 0}</h3>
-        <div style={{display:'flex',flexWrap:'wrap'}}>
-          { 
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {
             data?.decks?.allDecks.map(deck => {
               return <DeckCard key={deck.name} imports={deck.imports} userToken={user.token} name={deck.name} share={deck.share} totalCards={deck.totalCards} updateDeck={updateDeck} createdOn={deck.dateCreated} id={deck._id} />
             })
           }
         </div>
       </Card>
-      <span style={{ margin: '10px',color:'gray' }}>Current time: {new Date().toUTCString()}</span>
+      <span style={{ margin: '10px', color: 'gray' }}>Current time: {new Date().toUTCString()}</span>
 
     </Container>
   )
 }
 
-export default Progress
+export default Progress 
