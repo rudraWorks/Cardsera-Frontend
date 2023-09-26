@@ -233,7 +233,7 @@ function About() {
             exit={{ scale: 0 }}
           >
             <Button onClick={() => fetchCards({ type: 'allCards' })}>All cards</Button>
-            <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <ChooseDeck fetchCards={fetchCards} /> })}>Choose from deck</Button>
+            <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <ChooseDeck fetchCards={fetchCards} /> })}>Practice a deck</Button>
             <Button onClick={() => fetchCards({ type: 'easyCards' })}>Easy cards</Button>
             <Button onClick={() => fetchCards({ type: 'hardCards' })}>Hard cards</Button>
             <Button onClick={() => fetchCards({ type: 'unreviewedCards' })}>Unreviewed cards</Button>
