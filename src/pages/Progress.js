@@ -106,9 +106,6 @@ function Progress() {
       animate={{ y: 0 }}
       transition={{ type: 'sneek' }}
     >
-      <Card style={{ padding: '15px' }}> 
-        <Heatmap dayWiseReviews={dayWiseReviews}/>
-      </Card>
 
       <Card style={{ display: 'none' }}>
         <h1 style={{ color: 'black' }}>Progress</h1>
@@ -146,6 +143,10 @@ function Progress() {
           }
         </div>
       </Card>
+      <Card style={{ padding: '15px' }}> 
+        <Heatmap dayWiseReviews={dayWiseReviews}/>
+      </Card>
+
       <span style={{ margin: '10px', color: 'gray' }}>Current time: {new Date().toUTCString()}</span>
 
     </Container>
