@@ -1,116 +1,125 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import Modal from '../layouts/Modal'
+import { motion } from 'framer-motion'
 import useUser from '../Hooks/useUser'
-import Login from '../modalViews/Login'
-import Logout from '../modalViews/Logout'
-import useModal from '../Hooks/useModal'
+import { useWindowSize } from "@uidotdev/usehooks";
+
 
 const Container = styled.div` 
     display:flex;
-    align-items:center;
+    flex-direction:column;
+    // align-items:center;
     // justify-content:center;
-    padding:15px;
-    padding-top:30px;
-    height:30px;
+    padding:35px;
+    padding-top:50px;
+    color:white;
     &>a{
         text-decoration:none;
         color:white;
-        margin-right:45px;
+        margin-bottom:15px;
         font-size:22px;
     }
 
     @media only screen and (max-width: 600px) {
-        &>a{
-            font-size:18px;
-            margin-right:15px;
-        }
+       width:100%;
     }
     z-index:1000;
+    background:#36454F;
+    min-width:200px;
+
 `
-const LogoutDiv = styled.div`
-    font-size:22px;
-    @media only screen and (max-width: 600px) {
-            font-size:18px;
-            margin-right:15px;
-    }
-`
-const hoverVariants = {
-    scale: 1.5
-}
-const transitionVariants = {
-    type: 'spring',
-    stiffness: 200
-}
 
 const NORMAL = {
-    color: 'black',
 }
 const HOVER = {
-    color: 'black',
+    color: 'orange',
     fontWeight: 'bolder'
 }
-function Navbar() {
+const Close = styled.button`
+    position:absolute;
+    right:0;
+    top:0;
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    color:white;
+    padding:10px;
+    font-weight:bolder;
+    width:30px;
+    height:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:5px;
+    border-radius:50%;
+    &:hover{
+        background:#3a7e89; 
+    }
+`
+
+function Navbar({ showNav, setShowNav }) {
     const { user } = useUser()
-    const { modal, dispatchModal } = useModal()
+    const size = useWindowSize();
+
+
+    const handleClick = () => { 
+        if(size.width>600)
+            return 
+        setShowNav(false)
+    }
 
     return (
-        <Container as={motion.div}
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ type: 'spring', stiffness: 120 }}
-        >
-            {modal && <Modal />}
-            <NavLink to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
-                <motion.div transition={transitionVariants} whileHover={hoverVariants}>
-                    Home
-                </motion.div>
-            </NavLink>
-            {user==='LOADING' && <i>Loading...</i>}
-            {user && user!=='LOADING' &&
+        <>
 
-                <>
-                    <NavLink to={'/practice'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
-                        <motion.div transition={transitionVariants} whileHover={hoverVariants}>
-                            Practice
-                        </motion.div>
-                    </NavLink>
+            {
+                showNav &&
+                <Container as={motion.div}
+                    initial={{ x: '-50%' }}
+                    animate={{ x: '0' }}
+                    transition={{ type: 'sneek' }}
+                >
 
-                    <NavLink to={'/addcard'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
-                        <motion.div transition={transitionVariants} whileHover={hoverVariants}>
-                            Add
-                        </motion.div>
+                    <NavLink  onClick={handleClick} to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                        Home
                     </NavLink>
+                    <Close onClick={() => setShowNav(false)}>X</Close>
+                    {user === 'LOADING' && <i>Loading...</i>}
+                    {user && user !== 'LOADING' &&
 
-                    <NavLink to={'/progress'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
-                        <motion.div transition={transitionVariants} whileHover={hoverVariants}>
-                            Progress
-                        </motion.div>
-                    </NavLink>
-                </>
+                        <>
+                            <NavLink onClick={handleClick} to={'/practice'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                                Practice
+                            </NavLink>
+
+                            <NavLink onClick={handleClick} to={'/addcard'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                                Add
+                            </NavLink>
+
+                            <NavLink onClick={handleClick} to={'/progress'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                                Progress
+                            </NavLink>
+
+
+                            <NavLink onClick={handleClick} to={'/profile'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                                Profile
+                            </NavLink>
+                        </>
+                    }
+                    {
+                        !user && (
+                            <NavLink onClick={handleClick} to={'/login'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                                Login
+                            </NavLink>
+                        )
+                    }
+
+
+
+                </Container>
+
             }
-
-
-            <LogoutDiv onClick={
-                () => {
-                    if (!user)
-                        dispatchModal({ type: 'SET_CONTENT', content: <Login /> })
-                    else
-                        dispatchModal({ type: 'SET_CONTENT', content: <Logout /> })
-                }
-            }
-                style={{ ...NORMAL, cursor: 'pointer' }}
-            >
-                <motion.div transition={transitionVariants} whileHover={hoverVariants}>
-                    {!user && <span>Login</span>}
-                    {user && user!=='LOADING' && <span>Profile</span>}
-                </motion.div>
-
-            </LogoutDiv>
-
-        </Container>
+        </>
     )
 }
 

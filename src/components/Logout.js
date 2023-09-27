@@ -3,6 +3,7 @@ import useModal from '../Hooks/useModal'
 import useUser from '../Hooks/useUser'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
 
 const Container = styled.div`
   display:flex;
@@ -25,7 +26,7 @@ const Button = styled.button`
 `
 function Logout() {
   const { user, dispatch } = useUser()
-  const { dispatchModal } = useModal()
+  const { dispatchModal } = useModal() 
   const navigate = useNavigate()
 
 
@@ -34,8 +35,14 @@ function Logout() {
     dispatch({ type: 'LOGOUT' })
     navigate('/')
   }
+  if(!user)
+    return <>Loading...</>
   return (
-    <Container>
+    <Container as={motion.div}
+      initial={{ y: '100vh', scale: 0 }}
+      animate={{ y: 0, scale: 1 }}
+      transition={{ type: 'sneek' }}
+    >
       <h2>{user.name}</h2>
       <h3>{user.email}</h3>
       <br />

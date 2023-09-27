@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import Signup from '../components/Signup'
+import Signup from '../components/SignupButton'
 import useUser from '../Hooks/useUser'
 
 const Container = styled.div`
@@ -11,8 +11,8 @@ const Container = styled.div`
 
 // Define styled components
 const Header = styled.header`
-  background-color: #2d4059;
-  color: #fff;
+background:#36454F;
+color: #fff;
   text-align: center;
   padding: 2rem 0;
 `;
@@ -51,8 +51,8 @@ const ListItem = styled.li`
 `;
 
 const Footer = styled.footer`
-  background-color: #2d4059;
-  color: #fff;
+background:#36454F;
+color: #fff;
   text-align: center;
   padding: 2rem 0;
 `;
@@ -71,16 +71,15 @@ function Home() {
     >
 
       <Header>
-        <Title>Welcome to Cardsera: Your Interactive Learning Platform</Title>
+        <Title>Welcome to  Card<span style={{color:'orange'}}>sera</span> : Your Interactive Learning Platform</Title>
       </Header>
       <Main>
         <Section>
           <p>Unlock the full potential of your learning journey with Cardsera. Our innovative platform utilizes the science of <b> spaced repetition</b> to revolutionize the way you remember and comprehend information. No more struggling to retain knowledge or last-minute cramming sessions. Cardsera's intelligent algorithm adapts to your learning pace, ensuring you review each concept at precisely the right moment for optimal retention. Cardsera guarantees that what you learn stays with you for the long run. Welcome to a world where learning isn't just about acquiring information; it's about mastering it.</p>
-          <br/>
-          <video controls style={{ width: '100%' }} >
+          {/* <video controls style={{ width: '100%' }} >
             <source src='/videos/trim.mp4'></source>
           </video>
-          <i><small>Ali Abdaal, a famous YouTuber and productivity coach. <a href='https://www.youtube.com/@aliabdaal' target='_blank' >Link</a></small></i>
+          <i><small>Ali Abdaal, a famous YouTuber and productivity coach. <a href='https://www.youtube.com/@aliabdaal' target='_blank' >Link</a></small></i> */}
         </Section>
         <Section> 
           <SectionTitle>How Does Cardsera Work?</SectionTitle>

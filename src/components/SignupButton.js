@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useModal from '../Hooks/useModal';
-import Login from '../modalViews/Login';
+import Login from './Login';
 
 const SignupButtonStyled = styled.button`
   background-color: #3498db;

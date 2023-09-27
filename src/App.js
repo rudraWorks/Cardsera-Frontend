@@ -6,6 +6,8 @@ import AddCard from './pages/AddCard';
 import Progress from './pages/Progress';
 import UserState from './contexts/user/UserState';
 import ModalState from './contexts/Modal/ModalState';
+import Profile from './pages/Profile';
+import LoginPage from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         path: 'progress',
         element: <Progress />
+      },
+      {
+        path:'profile',
+        element:<Profile/>
+      },
+      {
+        path:'login',
+        element:<LoginPage/>
       }
     ]
   }
