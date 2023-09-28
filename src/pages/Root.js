@@ -40,12 +40,6 @@ const Button = styled.span`
     justify-content:center;
     align-items:center;
     cursor:pointer;
-    padding:10px;
-    background:#469aa7;
-    color:white;
-    &:hover{
-        background:#3a7e89; 
-    }
 `
 
 function Root() {
