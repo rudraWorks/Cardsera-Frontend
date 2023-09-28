@@ -32,7 +32,21 @@ const OutletContainer = styled.div`
     display:flex;
     flex-direction:column;
 `
-
+const Button = styled.span`
+    border:none;
+    display:absolute;
+    position:fixed;
+    z-index:100000;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    padding:10px;
+    background:#469aa7;
+    color:white;
+    &:hover{
+        background:#3a7e89; 
+    }
+`
 
 function Root() {
     const { modal } = useModal()
@@ -52,9 +66,9 @@ function Root() {
 
                 <div style={showNav ? (size.width <= 600 ? { width: '0%', display: 'none' } : { width: '100%' }) : { width: '100%' }}>
                     {!showNav &&
-                        <span style={{margin:'5px',cursor:'pointer'}} onClick={() => setShowNav(true)}>
+                        <Button style={{margin:'5px',cursor:'pointer'}} onClick={() => setShowNav(true)}>
                             <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAqElEQVRYR+2W3Q2DMAyEP3agha2qskN3gm5RsVR/lqiMiJRETd+c8HB+TCTf+Wyf3NE4usb4iIAUiBW4AjNwdh7MD3ADHoYTE3hVAA+1vYEhJ/AMj84KWHordswJXPYWbB+OYeDWgjUn4IhZTq01PJQC8gEzh1OlVSj6wL2CG8oHki4fag0rzV8KEyswAQvQOzMp3gP24Q3+9x6QDzi3/nd6raEUaK7AF4DTHiGLgCMZAAAAAElFTkSuQmCC'></img>
-                        </span>
+                        </Button>
                     }
                     <OutletContainer>
                         <Outlet />
