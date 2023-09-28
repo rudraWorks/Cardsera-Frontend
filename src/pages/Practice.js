@@ -217,7 +217,8 @@ function About() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             transition={{ delay: .3 }}
-          >
+          > 
+         
             <Card wordProp={word} handleKnow={handleKnow} progress={progress} handleDontKnow={handleDontKnow} />
           </motion.div>
         }

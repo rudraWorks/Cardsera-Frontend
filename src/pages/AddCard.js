@@ -205,7 +205,6 @@ function AddCard() {
         setAdding(false)
 
     }
-
     if (!user)
         return <h3>User auth failed</h3>
     if (loading)
