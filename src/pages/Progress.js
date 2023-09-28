@@ -120,8 +120,8 @@ function Progress() {
       <Card>
         <h1 style={{ color: 'black' }}>General</h1>
         <h3>Total cards: {data?.general.totalCards || 0}</h3>
-        <h3>Last added on: {data?.general.lastAddedDate ? new Date(data?.general.lastAddedDate).toLocaleDateString('en-GB') : 'NA'}</h3>
-        <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB') : 'NA'}</h3>
+        <h3>Last added on: {data?.general.lastAddedDate ? new Date(data?.general.lastAddedDate).toLocaleDateString('en-GB',{timeZone:'UTC'}) : 'NA'}</h3>
+        <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB',{timeZone:'UTC'}) : 'NA'}</h3>
 
       </Card>
       <Card style={{ maxHeight: '500px', overflowY: 'scroll' }}>
