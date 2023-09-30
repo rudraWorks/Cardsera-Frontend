@@ -9,7 +9,7 @@ const MODAL_STYLES = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%,-50%)',
-    minWidth: '400px',
+    width: '400px',
     minHeight: '200px',
     maxWidth: '90%',
     maxHeight: '90%',
