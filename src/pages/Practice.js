@@ -106,7 +106,6 @@ function About() {
         body: JSON.stringify({ cardId: word.cardId })
       })
       const json = await response.json()
-      console.log(json);
       if (!response.ok) {
         toast.error(json.message)
       }
@@ -191,7 +190,6 @@ function About() {
       }
 
       const json = await response.json()
-      console.log(json);
       if (!response.ok) {
         toast.error(json.message)
         setComplete(true)

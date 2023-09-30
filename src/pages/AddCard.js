@@ -128,7 +128,6 @@ function AddCard() {
                     }
                 })
                 const json = await response.json()
-                console.log(json);
                 if (!response.ok) {
                     return toast.error(json.message)
                 }

@@ -33,7 +33,6 @@ function UserState({ children }) {
                         headers:{'Content-Type':'application/json',Authorization:token}
                     })
                     const json = await response.json()
-                    console.log(json);
                     if(response.ok){
                         dispatch({type:'LOGIN',token,name,email,picture})
                     }  

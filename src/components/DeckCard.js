@@ -62,7 +62,6 @@ function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck
 
     const handleDelete = async () => {
         try{
-            console.log(userToken);
             const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/deck`,{
                 method:'DELETE',
                 headers:{
