@@ -10,14 +10,15 @@ import ImportDeck from '../components/ImportDeck';
 
 
 export const Container = styled.div`
-    display:flex;
+    display:flex; 
     justify-content:center; 
     align-items:center;
     flex-direction:column;
 `
 export const Box = styled.div`
     width:100%;
-    max-width:600px;
+    // max-width:600px;
+    margin-top:15px;
     padding:15px;
     display:flex;
     flex-direction:column;
@@ -41,9 +42,11 @@ export const Input = styled.input`
     &:focus{
         outline:1px solid blue;
     }
+    font-family:serif;
+
 
 `
-const Button = styled.button`
+export const Button = styled.button`
     width:90%;
     height:40px;
     margin-bottom:10px;
@@ -82,10 +85,10 @@ const Button = styled.button`
     }
 `
 
-const Textarea = styled.textarea`
+export const Textarea = styled.textarea`
     width:90%;
-    height:150px;
-    resize:none;
+    min-height:150px;
+    resize:vertical;
     font-size:20px;
     padding:10px;
     border:1px solid skyblue;
@@ -93,6 +96,8 @@ const Textarea = styled.textarea`
     &:focus{
         outline:1px solid blue;
     }
+    font-family:serif;
+
 `
 const colourStyles = {
     control: styles => ({ ...styles, backgroundColor: 'white', width: '100%' })

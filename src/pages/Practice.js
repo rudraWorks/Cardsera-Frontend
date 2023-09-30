@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
-import Card from '../components/PracticeCard'
+import PracticeCard from '../components/PracticeCard'
 import useUser from '../Hooks/useUser'
 import { toast } from 'react-toastify'
 import shuffle from '../utils/shuffleArray'
@@ -13,6 +13,7 @@ const Container = styled.div`
   display:flex;
   flex-direction:column;
   height:90%;
+  
 `
 const ControlButtons = styled.div`
   &>button{
@@ -105,6 +106,7 @@ function About() {
         body: JSON.stringify({ cardId: word.cardId })
       })
       const json = await response.json()
+      console.log(json);
       if (!response.ok) {
         toast.error(json.message)
       }
@@ -187,7 +189,7 @@ function About() {
         setProgress({ know: 0, dontKnow: json.cards.length })
         json.cards = shuffle(json.cards)
         setArr(json.cards)
-        setComplete(false)
+        setComplete(false) 
       }
     }
     catch (e) {
@@ -217,9 +219,9 @@ function About() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             transition={{ delay: .3 }}
-          > 
+          >  
          
-            <Card wordProp={word} handleKnow={handleKnow} progress={progress} handleDontKnow={handleDontKnow} />
+            <PracticeCard wordProp={word} handleKnow={handleKnow} progress={progress} handleDontKnow={handleDontKnow} setWord={setWord} />
           </motion.div>
         }
       </AnimatePresence>

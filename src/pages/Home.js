@@ -5,6 +5,8 @@ import Signup from '../components/SignupButton'
 import useUser from '../Hooks/useUser'
 
 const Container = styled.div`
+margin-top:15px;
+
 `
 
 

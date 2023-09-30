@@ -6,6 +6,7 @@ import CardDetails from '../modalViews/CardDetails'
 import Confirm from '../modalViews/Confirm'
 import { toast } from 'react-toastify'
 import useUser from '../Hooks/useUser'
+import EditCard from '../modalViews/EditCard'
 
 
 const Box = styled.div`
@@ -18,7 +19,6 @@ const Box = styled.div`
   border-radius:10px;
   background:aliceblue;
   border:1px solid skyblue;
-
 `
 const Bottom = styled.div`
   width:100%;
@@ -61,6 +61,12 @@ const Button = styled.button`
   &:nth-child(4):hover{
     background:darkorange;
   }
+  &:nth-child(5){
+    background:#75b1c9;
+  }
+  &:nth-child(5):hover{
+    background:#699fb5;
+  }
 
 `
 const Word = styled.div`
@@ -79,6 +85,8 @@ const Word = styled.div`
   border-radius:6px;
   text-align:center;
   user-select:text;
+  font-family:serif;
+
 `
 const Meaning = styled.div`
   width:100%;
@@ -92,6 +100,8 @@ const Meaning = styled.div`
   padding:10px;
   overflow-y:scroll;
   user-select:text;
+  font-family:serif;
+
 `
 const Show = styled.button`
   width:290px;
@@ -117,11 +127,13 @@ const Show = styled.button`
 `
 
 const Status = styled.div`
+margin-top:15px;
+
   width:90%;
   &>span{
     text-align:center;
     font-weight:bolder;
-    margin:10px;
+    margin:5px;
   }
   &>span:nth-child(2){
     color:green;
@@ -137,8 +149,10 @@ const Pre = styled.pre`
   white-space: -pre-wrap;      /* Opera 4-6 */
   white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  font-family:serif;
+
 `
-function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
+function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord}) {
   const [showMeaning, setShowMeaning] = useState(false)
   const { dispatchModal } = useModal()
   const { user } = useUser()
@@ -185,9 +199,9 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
       <br />
       <Box>
 
-        <Word style={showMeaning ? { height: 'fit-content' } : { fontSize: '40px',minHeight:'100px', transitionDuration: '.1s' }}>
-          {wordProp.front} 
-        </Word> 
+        <Word style={showMeaning ? { height: 'fit-content' } : { fontSize: '40px', minHeight: '100px', transitionDuration: '.1s' }}>
+          {wordProp.front}
+        </Word>
         {
           showMeaning &&
           <Meaning
@@ -211,10 +225,12 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress }) {
           <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <CardDetails card={wordProp} /> })
           }>
             Details
-          </Button>
-        </>
-        }
-      </Bottom> 
+          </Button> 
+          <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <EditCard id={wordProp._id} word={wordProp.front} meaning={wordProp.back} setWord={setWord} /> })
+          } >Edit</Button> 
+        </> 
+        } 
+      </Bottom>
 
 
     </>

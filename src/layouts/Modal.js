@@ -9,11 +9,11 @@ const MODAL_STYLES = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%,-50%)',
-    width: '400px',
+    // width: '400px',
     minHeight: '200px',
     maxWidth: '90%',
     maxHeight: '90%',
-    zIndex: '3000',
+    zIndex: '3000000',
     background: 'white',
     borderRadius: '10px',
     padding: '30px',
@@ -28,7 +28,7 @@ const BACKGROUND_STYLES = {
     right: '0',
     bottom: '0',
     background: 'rgba(0,0,0,0.5)',
-    zIndex: '1000'
+    zIndex: '100000'
 }
 
 const Button = styled.button`
