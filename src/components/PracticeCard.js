@@ -152,7 +152,7 @@ const Pre = styled.pre`
   font-family:serif;
 
 `
-function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord}) {
+function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord,updateEditedWord}) {
   const [showMeaning, setShowMeaning] = useState(false)
   const { dispatchModal } = useModal()
   const { user } = useUser()
@@ -226,7 +226,7 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord}) {
           }>
             Details
           </Button> 
-          <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <EditCard id={wordProp._id} word={wordProp.front} meaning={wordProp.back} setWord={setWord} /> })
+          <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <EditCard id={wordProp._id} word={wordProp.front} meaning={wordProp.back} setWord={setWord} updateEditedWord={updateEditedWord}/> })
           } >Edit</Button> 
         </> 
         } 

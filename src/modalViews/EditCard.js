@@ -15,7 +15,7 @@ const Container = styled.div`
     padding:5px;
 `
 
-function EditCard({ word, meaning, id ,setWord}) {
+function EditCard({ word, meaning, id ,setWord,updateEditedWord}) {
     const [submitting, setSubmitting] = useState(false)
     const [wordState, setWordState] = useState(word)
     const [meaningState, setMeaningState] = useState(meaning)
@@ -39,8 +39,9 @@ function EditCard({ word, meaning, id ,setWord}) {
             if(response.ok){
                 dispatchModal({type:'CLOSE'})
                 setWord((p)=>{ 
-                    return {...p,front:wordState,back:meaningState}
+                    return {...p,front:wordState,back:meaningState} 
                 })
+                updateEditedWord(id,wordState,meaningState)
             }
         }
         catch (e) {

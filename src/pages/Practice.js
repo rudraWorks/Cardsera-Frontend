@@ -116,6 +116,17 @@ function About() {
     }
 
   }
+
+  const updateEditedWord = (_id,word,meaning) => {
+    setArr((p)=>{
+        return p.map((item)=>{
+          if(item._id!==_id)
+            return item;
+          return {...item,front:word,back:meaning}
+        })
+    })
+  }
+
   useEffect(() => {
     if (arr.length) {
       setWord(arr[0])
@@ -221,7 +232,7 @@ function About() {
             transition={{ delay: .3 }}
           >  
          
-            <PracticeCard wordProp={word} handleKnow={handleKnow} progress={progress} handleDontKnow={handleDontKnow} setWord={setWord} />
+            <PracticeCard updateEditedWord={updateEditedWord} wordProp={word} handleKnow={handleKnow} progress={progress} handleDontKnow={handleDontKnow} setWord={setWord} />
           </motion.div>
         }
       </AnimatePresence>
