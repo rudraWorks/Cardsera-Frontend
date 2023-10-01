@@ -83,6 +83,10 @@ function Navbar({ showNav, setShowNav }) {
                     <NavLink  onClick={handleClick} to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                         Home
                     </NavLink>
+                    <NavLink  onClick={handleClick} to={'/shelf'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                        Shelf
+                    </NavLink>
+                    
                     <Close onClick={() => setShowNav(false)}>X</Close>
                     {user === 'LOADING' && <i>Loading...</i>}
                     {user && user !== 'LOADING' &&

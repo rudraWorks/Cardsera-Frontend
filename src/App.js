@@ -8,6 +8,7 @@ import UserState from './contexts/user/UserState';
 import ModalState from './contexts/Modal/ModalState';
 import Profile from './pages/Profile';
 import LoginPage from './pages/Login';
+import Shelf from './pages/Shelf';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path:'login',
         element:<LoginPage/>
+      },
+      {
+        path:'shelf',
+        element:<Shelf/>
       }
     ]
   }
