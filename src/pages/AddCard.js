@@ -108,7 +108,7 @@ function AddCard() {
     const { user } = useUser()
     const [loading, setLoading] = useState(true)
     const [front, setFront] = useState('')
-    const [back, setBack] = useState('')
+    const [back, setBack] = useState('<br/><br/><br/><br/>')
     const [deck, setDeck] = useState('')
     const [adding, setAdding] = useState(false)
     const [added, setAdded] = useState(0)

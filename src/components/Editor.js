@@ -9,7 +9,6 @@ const Container = styled.div`
     width:90%;
     background:white;
     max-height:100%;
-    overflow-y:scroll;
 `
 
 const RichTextEditor = ({back,setBack,isModal}) => {
