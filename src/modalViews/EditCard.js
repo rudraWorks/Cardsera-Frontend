@@ -3,6 +3,7 @@ import { Input, Button, Textarea } from '../pages/AddCard'
 import styled from 'styled-components'
 import useUser from '../Hooks/useUser';
 import useModal from '../Hooks/useModal';
+import RichTextEditor from '../components/Editor';
 
 const Container = styled.div`
     width:1000px;
@@ -54,8 +55,9 @@ function EditCard({ word, meaning, id ,setWord,updateEditedWord}) {
 
             <Input onChange={(e) => setWordState(e.target.value)} value={wordState} style={{ width: '99%' }} />
             <br />
-            <Textarea onChange={(e) => setMeaningState(e.target.value)} value={meaningState} style={{ resize: 'none', height: '400px', width: '99%' }} />
-            <br />
+            {/* <Textarea onChange={(e) => setMeaningState(e.target.value)} value={meaningState} style={{ resize: 'none', height: '400px', width: '99%' }} /> */}
+            <RichTextEditor isModal={true} back={meaningState} setBack={setMeaningState} />
+            <br /> 
             <i>{message}</i>
             <br />
             <Button disabled={submitting} onClick={handleSubmit} style={{ width: '99%' }}>

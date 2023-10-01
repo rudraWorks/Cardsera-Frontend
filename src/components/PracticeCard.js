@@ -7,7 +7,7 @@ import Confirm from '../modalViews/Confirm'
 import { toast } from 'react-toastify'
 import useUser from '../Hooks/useUser'
 import EditCard from '../modalViews/EditCard'
-
+import parser from 'html-react-parser'
 
 const Box = styled.div`
   width:100%;
@@ -208,8 +208,8 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord,updateEd
             as={motion.div}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-
-          ><Pre>{wordProp.back}</Pre></Meaning>
+ 
+          ><Pre>{parser(wordProp.back)}</Pre></Meaning>
         }
 
       </Box >

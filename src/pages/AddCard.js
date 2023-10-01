@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useUser from '../Hooks/useUser';
 import Loader from '../components/Loader';
 import ImportDeck from '../components/ImportDeck';
-
+import RichTextEditor from '../components/Editor'; 
 
 export const Container = styled.div`
     display:flex; 
@@ -234,8 +234,9 @@ function AddCard() {
                             <Input placeholder='Any problem/question/vocabulary...' value={front} onChange={(e) => setFront(e.target.value)} />
                             <br />
                             <h3>Card back</h3>
-                            <Textarea placeholder='Solution/answer/meaning...' value={back} onChange={(e) => setBack(e.target.value)} />
-                        </>
+                            {/* <Textarea placeholder='Solution/answer/meaning...' value={back} onChange={(e) => setBack(e.target.value)} /> */}
+                            <RichTextEditor back={back} setBack={setBack} />
+                        </> 
                 }
                 <br /> 
                 <h3>Create/select a deck</h3>
