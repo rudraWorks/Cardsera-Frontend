@@ -9,6 +9,7 @@ const Container = styled.div`
     width:90%;
     background:white;
     max-height:100%;
+
 `
 
 const RichTextEditor = ({back,setBack,isModal}) => {
@@ -32,7 +33,7 @@ const RichTextEditor = ({back,setBack,isModal}) => {
   ];
  
   return (
-      <Container style={isModal?{width:'99%',minHeight:'200px'}:{width:'90%'}}>
+      <Container style={isModal?{width:'99%',minHeight:'200px',overflowY:'scroll'}:{width:'90%'}}>
         <ReactQuill
           value={back} 
           onChange={handleChange}  
