@@ -7,9 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import useUser from '../Hooks/useUser';
 import Loader from '../components/Loader';
 import ImportDeck from '../components/ImportDeck';
-import RichTextEditor from '../components/Editor'; 
+import RichTextEditor from '../components/Editor';  
+import Info from '../components/Info';
 
-export const Container = styled.div`
+export const Container = styled.div` 
     display:flex; 
     justify-content:center; 
     align-items:center;
@@ -52,9 +53,7 @@ export const Button = styled.button`
     font-size:15px;
     background:lightgreen;
     cursor:pointer;
-    &:hover{
-        background:#7fcf7f;
-    }
+
     display: inline-block;
     cursor: pointer;
     text-align: center;
@@ -232,11 +231,11 @@ function AddCard() {
                             {/* <Textarea placeholder='Solution/answer/meaning...' value={back} onChange={(e) => setBack(e.target.value)} /> */}
                             <RichTextEditor back={back} setBack={setBack} />
                         </> 
-                }
+                }  
                 <br /> 
-                <h3>Create/select a deck</h3>
+                <h3 style={{display:'flex',alignItems:'center'}}>Create/select a deck  &nbsp; <Info  /> </h3>
                 <div
-                    style={{ zIndex: '1000', width: '90%', margin: '5px' }}
+                    style={{ zIndex: '1000', width: '90%', margin: '5px' }} 
                 >
                     <Select styles={colourStyles} options={options} onChange={handleSelectChange} />
                 </div>
@@ -253,3 +252,4 @@ function AddCard() {
 }
 
 export default AddCard
+
