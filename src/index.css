@@ -57,3 +57,9 @@ code {
 ::placeholder { /* Most modern browsers support this now. */
    color:    lightgray;
 }
+
+
+/* scrollbar */
+/* ::-webkit-scrollbar {
+  display: none;
+} */

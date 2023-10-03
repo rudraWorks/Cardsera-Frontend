@@ -42,6 +42,10 @@ const router = createBrowserRouter([
       {
         path:'shelf',
         element:<Shelf/>
+      },
+      {
+        path:'*',
+        element:<h3 style={{textAlign:'center'}}>404 Not Found!!</h3>
       }
     ]
   }

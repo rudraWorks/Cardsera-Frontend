@@ -9,7 +9,7 @@ const Container = styled.div`
     width:90%;
     background:white;
     max-height:100%;
-
+    font-family:serif;
 `
 
 const RichTextEditor = ({back,setBack,isModal}) => {

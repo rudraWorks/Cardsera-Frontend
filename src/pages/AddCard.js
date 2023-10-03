@@ -28,9 +28,6 @@ export const Box = styled.div`
     border-radius:10px; 
     background:aliceblue;
     border:1px solid skyblue; 
-    &>h3{
-        font-weight:300;
-    }
 `
 export const Input = styled.input`
     padding:5px;
@@ -51,7 +48,6 @@ export const Button = styled.button`
     height:40px;
     margin-bottom:10px;
     border-radius:5px;
-    font-weight:bolder;
     border:1px solid #5b9d5b;
     font-size:15px;
     background:lightgreen;
@@ -59,7 +55,6 @@ export const Button = styled.button`
     &:hover{
         background:#7fcf7f;
     }
-    font-weight: bold;
     display: inline-block;
     cursor: pointer;
     text-align: center;

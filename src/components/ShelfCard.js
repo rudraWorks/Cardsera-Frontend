@@ -149,7 +149,6 @@ const EducationalCard = ({
       <CardContent>
         <Description>{description}</Description>
         <AdditionalText>
-            <span>Deck ID</span> &nbsp;&nbsp;
           {additionalText}
           <CopyFeedback show={showCopyFeedback}>Copied!</CopyFeedback>
           <CopyButton onClick={handleCopyClick}>Copy</CopyButton>

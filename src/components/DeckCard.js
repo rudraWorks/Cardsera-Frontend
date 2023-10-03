@@ -13,9 +13,7 @@ const Container = styled.div`
     border-radius:10px;
     user-select:text;
     border:1px solid rgba(0,0,255,.2);
-    &>h2{
-        font-weight:300;
-    }
+    color:gray;
 `
 const Delete = styled.button`
     height:20px;

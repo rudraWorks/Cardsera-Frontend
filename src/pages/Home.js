@@ -3,10 +3,13 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import Signup from '../components/SignupButton'
 import useUser from '../Hooks/useUser'
+import ShelfCard from '../components/ShelfCard'
+
 
 const Container = styled.div`
 margin-top:15px;
-
+font-size:20px;
+// background:gray;
 `
 
 
@@ -14,6 +17,7 @@ margin-top:15px;
 // Define styled components
 const Header = styled.header`
 background:#36454F;
+// width:80%;
 color: #fff;
   text-align: center;
   padding: 2rem 0;
@@ -54,6 +58,7 @@ const ListItem = styled.li`
 
 const Footer = styled.footer`
 background:#36454F;
+// width:80%;
 color: #fff;
   text-align: center;
   padding: 2rem 0;
@@ -62,7 +67,7 @@ color: #fff;
 
 
 function Home() {
-  const {user} = useUser()
+  const { user } = useUser()
 
   return (
     <Container
@@ -73,36 +78,57 @@ function Home() {
     >
 
       <Header>
-        <Title>Welcome to  Card<span style={{color:'orange'}}>sera</span> : Your Interactive Learning Platform</Title>
+        <Title>Welcome to  Card<span style={{ color: 'orange' }}>sera</span> : Your Interactive Learning Platform</Title>
       </Header>
+
       <Main>
         <Section>
-          <p>Unlock the full potential of your learning journey with Cardsera. Our innovative platform utilizes the science of <b> spaced repetition</b> to revolutionize the way you remember and comprehend information. No more struggling to retain knowledge or last-minute cramming sessions. Cardsera's intelligent algorithm adapts to your learning pace, ensuring you review each concept at precisely the right moment for optimal retention. Cardsera guarantees that what you learn stays with you for the long run. Welcome to a world where learning isn't just about acquiring information; it's about mastering it.</p>
+          <p>
+            <img style={{ width: '100px' }} src='logo101.png' />
+            Unlock the full potential of your learning journey with Cardsera. Our innovative platform utilizes the science of <b> spaced repetition</b> to revolutionize the way you remember and comprehend information. No more struggling to retain knowledge or last-minute cramming sessions. Cardsera adapts to your learning pace, ensuring you review each concept at precisely the right moment for optimal retention. Cardsera guarantees that what you learn stays with you for the long run. Welcome to a world where learning isn't just about acquiring information; it's about mastering it.</p>
           {/* <video controls style={{ width: '100%' }} >
             <source src='/videos/trim.mp4'></source>
           </video>
           <i><small>Ali Abdaal, a famous YouTuber and productivity coach. <a href='https://www.youtube.com/@aliabdaal' target='_blank' >Link</a></small></i> */}
         </Section>
-        <Section> 
-          <SectionTitle>How Does Cardsera Work?</SectionTitle>
-          <List>
-            <ListItem>Easily create interactive flashcards by entering questions and answers. The question goes on the front, and the answer on the back.</ListItem>
-            <ListItem>Organize your flashcards into decks, each representing a chapter or lesson. Stay in control of your learning journey.</ListItem>
-            <ListItem>Practice your decks at your own pace, anytime, anywhere. Cardsera adapts to your schedule, making learning fit into your life seamlessly.</ListItem>
-            <ListItem>Test your knowledge with active recall. Cardsera presents you with the question, and you must recall the answer before revealing it. It's proven to enhance memory retention.</ListItem>
-            <ListItem>Share your knowledge effortlessly. Every deck comes with a unique Deck ID, making it simple for you to collaborate with friends, classmates, or colleagues.</ListItem>
-          </List>
-        </Section>
         <Section>
-          <SectionTitle>Why Choose Cardsera?</SectionTitle>
+          <SectionTitle>How to use Cardsera?</SectionTitle>
           <List>
-            <ListItem>Maximize your study time with the science-backed method of active recall. Say goodbye to passive learning.</ListItem>
-            <ListItem>Tailor your learning experience with decks that suit your needs, whether it's for school, work, or personal growth.</ListItem>
-            <ListItem>Collaborate and learn together with your peers by sharing decks seamlessly.</ListItem>
-            <ListItem>Access your decks from your computer, tablet, or phone. Learning is at your fingertips.</ListItem>
+            <ListItem>
+              <b>Comprehensive Learning:</b> Begin by thoroughly understanding the topics from your notes.</ListItem>
+
+            <ListItem>
+              <b>Flashcard Creation:</b> Convert crucial points into flashcards and organize them into relevant decks within Cardsera.
+            </ListItem>
+
+            <ListItem>
+              <b>Regular Review:</b> Establish a routine for reviewing your decks at appropriate intervals, such as twice a day or thrice a week, depending on your convenience.
+
+            </ListItem>
+            <ListItem>
+              <b> Adaptive Frequency:</b> Adjust your review frequency based on your progress graph. Increase or decrease the frequency as needed to optimize your learning.
+
+            </ListItem>
+
           </List>
         </Section>
-        { !user && <Signup/> }
+        {/* <Section>
+        <SectionTitle>Sample Deck</SectionTitle>
+          <List>
+            <ListItem>Copy the deck ID and import in your account after login.</ListItem>
+          </List>
+          <ShelfCard
+            title="Javascript"
+            description="Discover the vital JavaScript interview questions essential for your preparation within these 37 flashcards."
+            additionalText="6516e4bacc99a3c2ba76a00d"
+            stars={4.5}
+            starColor="orange"
+            circleNumber={34}
+            circleColor="orange"
+            numRatings={1.8}
+          />
+        </Section> */}
+        {!user && <Signup />}
       </Main>
       <Footer>
         <p>Join thousands of learners who have unlocked the power of interactive learning with Cardsera. Start your journey to knowledge mastery today!</p>

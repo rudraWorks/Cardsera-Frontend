@@ -24,10 +24,10 @@ const Card = styled.div`
   border-radius:10px;
   padding:15px;
   &>h1{
-    font-weight:300;
+    color:#4a4949;
   }
   &>h3{
-    font-weight:200; 
+    color:gray;
   }
 `
 
@@ -106,10 +106,8 @@ function Progress() {
       transition={{ type: 'sneek' }}
     >
 
-
-
       <Card>
-        <h1 style={{ color: 'black' }}>Today</h1>
+        <h2 style={{ color: 'black' }}>Today</h2>
         <h3>Total reviewed: {data?.today.totalReviewed || 0}</h3>
         <h3>Correct: {data?.today.correct || 0}</h3>
         <h3>Incorrect: {data?.today.incorrect || 0}</h3>
@@ -117,14 +115,14 @@ function Progress() {
 
       </Card>
       <Card>
-        <h1 style={{ color: 'black' }}>General</h1>
+        <h2 style={{ color: 'black' }}>General</h2>
         <h3>Total cards: {data?.general.totalCards || 0}</h3>
         <h3>Last added on: {data?.general.lastAddedDate ? new Date(data?.general.lastAddedDate).toLocaleDateString('en-GB',{timeZone:'UTC'}) : 'NA'}</h3>
         <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB',{timeZone:'UTC'}) : 'NA'}</h3>
 
       </Card>
       <Card style={{ maxHeight: '500px', overflowY: 'scroll' }}>
-        <h1 style={{ color: 'black' }}>Decks</h1>
+        <h2 style={{ color: 'black' }}>Decks</h2>
         <h3>Total decks: {data?.decks.totalDecks || 0}</h3>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {

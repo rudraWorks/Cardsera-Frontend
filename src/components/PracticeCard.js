@@ -95,13 +95,11 @@ const Meaning = styled.div`
   margin-top:7px;
   font-size:20px;
   border-radius:6px;
-  background:lightgray;
-  border:1px solid lightgray;
+  background:#cef5ce;
   padding:10px;
   overflow-y:scroll;
   user-select:text;
   font-family:serif;
-
 `
 const Show = styled.button`
   width:290px;
@@ -199,7 +197,7 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord,updateEd
       <br />
       <Box>
 
-        <Word style={showMeaning ? { height: 'fit-content' } : { fontSize: '40px', minHeight: '100px', transitionDuration: '.1s' }}>
+        <Word style={showMeaning ? { height: 'fit-content' } : { fontSize: '30px', minHeight: '100px', transitionDuration: '.1s' }}>
           {wordProp.front}
         </Word>
         {
@@ -209,7 +207,9 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord,updateEd
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
  
-          ><Pre>{parser(wordProp.back)}</Pre></Meaning>
+          >
+            <Pre>{parser(wordProp.back)}</Pre>
+          </Meaning>
         }
 
       </Box >

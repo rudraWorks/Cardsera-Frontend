@@ -9,7 +9,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 const Container = styled.div` 
     display:flex;
     flex-direction:column;
-    // align-items:center;
+    align-items:center;
     // justify-content:center;
     padding:35px;
     padding-top:50px;
@@ -79,13 +79,13 @@ function Navbar({ showNav, setShowNav }) {
                     animate={{ x: '0' }}
                     transition={{ type: 'sneek' }}
                 >
-
+                    <img style={{width:'80px',marginBottom:'30px'}} src='logo101.png'/>
                     <NavLink  onClick={handleClick} to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                         Home
                     </NavLink>
-                    <NavLink  onClick={handleClick} to={'/shelf'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                    {/* <NavLink  onClick={handleClick} to={'/shelf'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                         Shelf
-                    </NavLink>
+                    </NavLink> */}
                     
                     <Close onClick={() => setShowNav(false)}>X</Close>
                     {user === 'LOADING' && <i>Loading...</i>}
