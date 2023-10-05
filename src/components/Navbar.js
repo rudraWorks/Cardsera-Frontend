@@ -10,7 +10,6 @@ const Container = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-    // justify-content:center;
     padding:35px;
     padding-top:50px;
     color:white;
@@ -63,9 +62,9 @@ function Navbar({ showNav, setShowNav }) {
     const size = useWindowSize();
 
 
-    const handleClick = () => { 
-        if(size.width>600)
-            return 
+    const handleClick = () => {
+        if (size.width > 600)
+            return
         setShowNav(false)
     }
 
@@ -79,21 +78,26 @@ function Navbar({ showNav, setShowNav }) {
                     animate={{ x: '0' }}
                     transition={{ type: 'sneek' }}
                 >
-                    <img style={{width:'80px',marginBottom:'30px'}} src='logo101.png'/>
-                    <NavLink  onClick={handleClick} to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                    <img style={{ width: '80px', marginBottom: '30px' }} src='logo101.png' />
+                    <NavLink onClick={handleClick} to={'/'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                         Home
                     </NavLink>
                     {/* <NavLink  onClick={handleClick} to={'/shelf'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                         Shelf
                     </NavLink> */}
-                    
+
                     <Close onClick={() => setShowNav(false)}>X</Close>
                     {user === 'LOADING' && <i>Loading...</i>}
                     {user && user !== 'LOADING' &&
 
                         <>
+
                             <NavLink onClick={handleClick} to={'/practice'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                                 Practice
+                            </NavLink>
+
+                            <NavLink onClick={handleClick} to={'/study'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                                Study   
                             </NavLink>
 
                             <NavLink onClick={handleClick} to={'/addcard'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>

@@ -22,7 +22,7 @@ function Info() {
   const { dispatchModal } = useModal()
 
   return (
-    <Div onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <SelectDeckInfo /> })}>
+    <Div onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <SelectDeckInfo  /> })}>
       ?
     </Div>
   )

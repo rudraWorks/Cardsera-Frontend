@@ -233,7 +233,7 @@ function AddCard() {
                         </> 
                 }  
                 <br /> 
-                <h3 style={{display:'flex',alignItems:'center'}}>Create/select a deck  &nbsp; <Info  /> </h3>
+                <h3 style={{display:'flex',alignItems:'center'}}>Create/select a deck  &nbsp; <Info /> </h3>
                 <div
                     style={{ zIndex: '1000', width: '90%', margin: '5px' }} 
                 >

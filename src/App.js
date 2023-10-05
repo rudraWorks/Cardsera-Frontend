@@ -9,6 +9,7 @@ import ModalState from './contexts/Modal/ModalState';
 import Profile from './pages/Profile';
 import LoginPage from './pages/Login';
 import Shelf from './pages/Shelf';
+import Study from './pages/Study';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         element:<Shelf/>
       },
       {
+        path:'study',
+        element:<Study/>
+      }, 
+      { 
         path:'*',
         element:<h3 style={{textAlign:'center'}}>404 Not Found!!</h3>
       }
