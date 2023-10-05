@@ -38,14 +38,7 @@ const Content = styled.div`
 `;
 
 const Span = styled.div`
-    background:lightgray;
     cursor:pointer;
-    width:15px;
-    height:15px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
 `
 
 function Collapse({ question, answer }) {

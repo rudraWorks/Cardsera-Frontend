@@ -18,7 +18,8 @@ const Close = styled.button`
     width:30px;
     height:30px;
     border-radius:50%;
-    margin:10px;
+    margin:5px;
+    // margin-top:0px;
     position:absolute;
     border:0px solid black;
     background:orange;
@@ -26,6 +27,7 @@ const Close = styled.button`
     justify-content:center;
     align-items:center;
     right:0;
+    top:0;
     cursor:pointer;
     &:hover{
         background:tomato;
