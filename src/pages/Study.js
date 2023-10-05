@@ -18,8 +18,7 @@ const Close = styled.button`
     width:30px;
     height:30px;
     border-radius:50%;
-    margin:30px;
-    margin-top:0px;
+    margin:10px;
     position:absolute;
     border:0px solid black;
     background:orange;
