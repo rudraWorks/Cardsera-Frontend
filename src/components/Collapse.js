@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import parser from 'html-react-parser'
+import CardDetails from '../modalViews/CardDetails'
+import useModal from '../Hooks/useModal'
+import EditCard from '../modalViews/EditCard';
 
 // Styled components
 const Wrapper = styled.div`
@@ -18,13 +21,16 @@ export const Button = styled.button`
   padding: 4px 7px;
   cursor: pointer;
   border-radius: 5px;
+  margin:2px;
 `;
 
 const QuestionContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-top: 10px;
+  @media only screen and (max-width: 600px) {
+    flex-direction:column;
+  }
 `;
 
 const QuestionText = styled.h3`
@@ -41,8 +47,9 @@ const Span = styled.div`
     cursor:pointer;
 `
 
-function Collapse({ question, answer }) {
+function Collapse({ card,updateCardsArray }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { dispatchModal } = useModal()
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -54,18 +61,24 @@ function Collapse({ question, answer }) {
         {isCollapsed ? 'Show' : 'Hide'}
       </Button> */}
       <QuestionContainer>
-        <QuestionText>{question}</QuestionText>
-        {isCollapsed ? (
-          <Span onClick={toggleCollapse}>&#9662;</Span> // Downward-pointing arrow when collapsed
-        ) : (
-          <Span onClick={toggleCollapse}>&#9652;</Span> // Upward-pointing arrow when expanded
-        )}
+        <QuestionText>{card.front}</QuestionText>
+        <div>
+          <Button onClick={toggleCollapse}>
+            {isCollapsed ? 'show' : 'hide'}
+          </Button>
+          <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <CardDetails card={card} /> })}>
+            info
+          </Button>
+          <Button onClick={()=>dispatchModal({type:'SET_CONTENT',content:<EditCard id={card._id} word={card.front} meaning={card.back} updateCardsArray={updateCardsArray}/>})}>
+            edit
+          </Button>
+        </div>
       </QuestionContainer>
-      <Content isCollapsed={isCollapsed}> 
-        {/* Content to be collapsed */} 
-        <hr style={{marginTop:'5px',marginBottom:'5px'}}/>
-        <p>{parser(answer)}</p>
-      </Content> 
+      <Content isCollapsed={isCollapsed}>
+        {/* Content to be collapsed */}
+        <hr style={{ marginTop: '5px', marginBottom: '5px' }} />
+        <p>{parser(card.back)}</p>
+      </Content>
     </Wrapper>
   );
 }

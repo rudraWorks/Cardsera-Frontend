@@ -65,7 +65,7 @@ function Root() {
                         </Button>
                     }
                     <OutletContainer>
-                        <Outlet />
+                        <Outlet /> 
                     </OutletContainer>
                     <Bottom>
                         a rudra pratap singh production

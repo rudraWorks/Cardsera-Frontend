@@ -3,14 +3,10 @@ import styled from 'styled-components'
 import { toast } from 'react-toastify'
 import useUser from '../Hooks/useUser'
 import useModal from '../Hooks/useModal'
+import { Button } from '../components/Collapse'
 
 const Container = styled.div`
 
-`
-const Button = styled.button`
-  min-width:70px;
-  margin:3px;
-  margin-top:10px;
 `
 
 function ChooseDeck({fetchCards}) {
@@ -20,7 +16,7 @@ function ChooseDeck({fetchCards}) {
   const {dispatchModal} = useModal()
 
   useEffect(() => {
-
+ 
     const loadDecks = async () => {
       if (!user)
         return
@@ -56,14 +52,14 @@ function ChooseDeck({fetchCards}) {
     <Container>
 
       { 
-        decks && decks.length ? <>
-        <h3>Choose a deck</h3>
+        decks && decks.length ? <> 
+        <h3 style={{marginBottom:'5px'}}>Choose a deck</h3>
         {decks.map(item => { 
           return (
             <Button key={item.value} onClick={()=>handleClick(item.value)}>{item.value}</Button>
 )
         })} </>: <h3>No deck found!</h3>
-      }
+      } 
 
     </Container>
   )

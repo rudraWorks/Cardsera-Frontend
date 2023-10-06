@@ -7,7 +7,6 @@ const Container = styled.div`
     justify-content:center;
     font-size:15px;
     &>h3>span{
-        font-weight:300;
         color:blue;
     }
     &>h3{

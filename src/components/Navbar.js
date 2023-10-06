@@ -91,7 +91,9 @@ function Navbar({ showNav, setShowNav }) {
                     {user && user !== 'LOADING' &&
 
                         <>
-
+                            <NavLink onClick={handleClick} to={'/addcard'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                                Add
+                            </NavLink>
                             <NavLink onClick={handleClick} to={'/practice'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                                 Practice
                             </NavLink>
@@ -100,9 +102,7 @@ function Navbar({ showNav, setShowNav }) {
                                 Study   
                             </NavLink>
 
-                            <NavLink onClick={handleClick} to={'/addcard'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
-                                Add
-                            </NavLink>
+
 
                             <NavLink onClick={handleClick} to={'/progress'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                                 Progress

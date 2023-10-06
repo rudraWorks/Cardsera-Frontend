@@ -28,10 +28,13 @@ const CardContent = styled.div`
   text-align: center;
 `;
 
-function Card({ content,fetchCards }) {
+function Card({ name,fetchCards }) {
   return ( 
-    <CardContainer onClick={()=>fetchCards(content)}>
-      <CardContent>{content}</CardContent>
+    <CardContainer onClick={()=>fetchCards(name)}>
+      <CardContent>
+        <h3>{name}</h3>
+        
+      </CardContent>
     </CardContainer>
   );
 }

@@ -16,13 +16,13 @@ const Container = styled.div`
     padding:5px;
 `
 
-function EditCard({ word, meaning, id ,setWord,updateEditedWord}) {
+function EditCard({ word, meaning, id, setWord, updateEditedWord, updateCardsArray }) {
     const [submitting, setSubmitting] = useState(false)
     const [wordState, setWordState] = useState(word)
     const [meaningState, setMeaningState] = useState(meaning)
     const { user } = useUser()
     const [message, setMessage] = useState('')
-    const {dispatchModal} = useModal()
+    const { dispatchModal } = useModal()
 
     const handleSubmit = async () => {
         setSubmitting(true)
@@ -37,12 +37,17 @@ function EditCard({ word, meaning, id ,setWord,updateEditedWord}) {
             })
             const json = await response.json()
             setMessage(json.message)
-            if(response.ok){
-                dispatchModal({type:'CLOSE'})
-                setWord((p)=>{ 
-                    return {...p,front:wordState,back:meaningState} 
-                })
-                updateEditedWord(id,wordState,meaningState)
+            if (response.ok) {
+                dispatchModal({ type: 'CLOSE' })
+                if (updateEditedWord && setWord) {
+                    setWord((p) => {
+                        return { ...p, front: wordState, back: meaningState }
+                    })
+                    updateEditedWord(id, wordState, meaningState)
+                }
+                if(updateCardsArray){
+                    updateCardsArray(id,wordState,meaningState)
+                }
             }
         }
         catch (e) {
@@ -57,7 +62,7 @@ function EditCard({ word, meaning, id ,setWord,updateEditedWord}) {
             <br />
             {/* <Textarea onChange={(e) => setMeaningState(e.target.value)} value={meaningState} style={{ resize: 'none', height: '400px', width: '99%' }} /> */}
             <RichTextEditor isModal={true} back={meaningState} setBack={setMeaningState} />
-            <br /> 
+            <br />
             <i>{message}</i>
             <br />
             <Button disabled={submitting} onClick={handleSubmit} style={{ width: '99%' }}>
