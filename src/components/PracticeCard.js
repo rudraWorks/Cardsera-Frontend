@@ -86,7 +86,7 @@ const Word = styled.div`
   text-align:center;
   user-select:text;
   font-family:serif;
-
+  border:1px solid blue;
 `
 const Meaning = styled.div`
   width:100%;
@@ -95,7 +95,9 @@ const Meaning = styled.div`
   margin-top:7px;
   font-size:20px;
   border-radius:6px;
-  background:#cef5ce;
+  // background:#cef5ce;
+  background:white;
+  border:1px solid gray;
   padding:10px;
   overflow-y:scroll;
   user-select:text;

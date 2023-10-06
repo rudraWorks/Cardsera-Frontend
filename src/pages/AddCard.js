@@ -17,10 +17,10 @@ export const Container = styled.div`
     flex-direction:column;
 `
 export const Box = styled.div`
-    width:100%;
+    width:95%;
     // max-width:600px;
     margin-top:15px;
-    padding:15px;
+    padding:5px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -29,11 +29,14 @@ export const Box = styled.div`
     border-radius:10px; 
     background:aliceblue;
     border:1px solid skyblue; 
+    @media only screen and (max-width: 600px) {
+        width:100%;
+    }
 `
 export const Input = styled.input`
     padding:5px;
     font-size:20px;
-    width:90%;
+    width:95%;
     border-radius:5px;
     border:none;
     border:1px solid skyblue;
@@ -45,7 +48,7 @@ export const Input = styled.input`
 
 `
 export const Button = styled.button`
-    width:90%;
+    width:95%;
     height:40px;
     margin-bottom:10px;
     border-radius:5px;
@@ -235,7 +238,7 @@ function AddCard() {
                 <br /> 
                 <h3 style={{display:'flex',alignItems:'center'}}>Create/select a deck  &nbsp; <Info /> </h3>
                 <div
-                    style={{ zIndex: '1000', width: '90%', margin: '5px' }} 
+                    style={{ zIndex: '1000', width: '95%', margin: '5px' }} 
                 >
                     <Select styles={colourStyles} options={options} onChange={handleSelectChange} />
                 </div>

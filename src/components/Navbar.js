@@ -35,7 +35,7 @@ const HOVER = {
     color: 'orange',
     fontWeight: 'bolder'
 }
-const Close = styled.button`
+export const Close = styled.button`
     position:absolute;
     right:0;
     top:0;

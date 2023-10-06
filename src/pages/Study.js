@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import Loader from '../components/Loader'
 import Collapse from '../components/Collapse'
 import { Button } from './Practice'
+import { Close } from '../components/Navbar'
 
 const Container = styled.div` 
     display:flex; 
@@ -13,26 +14,6 @@ const Container = styled.div`
     align-items:center;
     flex-wrap:wrap;
 
-`
-const Close = styled.button`
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    margin:5px;
-    // margin-top:0px;
-    position:absolute;
-    border:0px solid black;
-    background:orange;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    right:0;
-    top:0;
-    cursor:pointer;
-    &:hover{
-        background:tomato;
-        color:white;
-    }
 `
 
 
@@ -63,7 +44,7 @@ function Study() {
                 setDecks(json.decks)
             }
             catch (e) {
-                return toast.error(e.message)
+                return toast.error(e.message) 
             }
         }
         if (user && user !== 'LOADING')
@@ -121,7 +102,7 @@ function Study() {
             </Container>
             <br />
             {deckLoading && <h3 style={{ textAlign: 'center' }}>Loading...</h3>}
-            {showCards && <Close onClick={() => setShowCards(false)}>&#10006;</Close>}
+            {showCards && <Close style={{background:'gray'}} onClick={() => setShowCards(false)}>&#10006;</Close>}
             {showCards && cardsArr.map(card => {
                 return (
                     <Collapse key={card._id} question={card.front} answer={card.back} />

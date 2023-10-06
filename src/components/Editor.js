@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import styles
 import styled from 'styled-components';
-
+import EditorOptions, {modules,formats} from '../utils/EditorOptions'
 
 const Container = styled.div`
-    width:90%;
+    width:95%;
     background:white;
     max-height:100%;
     font-family:serif;
@@ -19,21 +19,23 @@ const RichTextEditor = ({back,setBack,isModal}) => {
   };
 
 
-  const modules = {
-    toolbar: [
-      [{ 'header': '1' }, { 'header': '2' }],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-      ['bold', 'italic', 'underline'],
-      [{ 'align': [] }],
-    ],
-  };
-
-  const formats = [
-    'header', 'font', 'list', 'bullet', 'bold', 'italic', 'underline', 'link', 'align'
-  ];
+  // const modules = {
+  //   toolbar: [ 
+  //     [ { size: [ 'small', false, 'large' ]}],
+  //     [{ 'header': '1' }, { 'header': '2' }],
+  //     [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+  //     ['bold', 'italic', 'underline'],
+  //     [{ 'align': [] }],
+  //   ],
+  // };
+ 
+  // const formats = [
+  //   'header', 'font', 'list', 'bullet', 'bold', 'italic', 'underline', 'link', 'align'
+  // ];
  
   return (
-      <Container style={isModal?{width:'99%',minHeight:'200px',overflowY:'scroll'}:{width:'90%'}}>
+      <Container style={isModal?{width:'99%',minHeight:'200px',overflowY:'scroll'}:{width:'95%'}}>
+        <EditorOptions/>
         <ReactQuill
           value={back} 
           onChange={handleChange}  
