@@ -95,9 +95,7 @@ function Study() {
     return (
         <>
             {showCards && <h1 style={{ marginLeft: '15px' }}>{deckName}</h1>}
-           /* {!showCards && 
-               <> <h1 style={{textAlign:'center'}}>Choose a deck to study</h1> <br/> </>
-            } */
+   
             <Container as={motion.div}
                 initial={{ y: '100vh', scale: 0 }}
                 animate={{ y: 0, scale: 1 }}
