@@ -16,9 +16,6 @@ font-size:20px;
 
 // Define styled components
 const Header = styled.header`
-background:#36454F;
-// width:80%;
-color: #fff;
   text-align: center;
   padding: 2rem 0;
 `;
@@ -57,9 +54,6 @@ const ListItem = styled.li`
 `;
 
 const Footer = styled.footer`
-background:#36454F;
-// width:80%;
-color: #fff;
   text-align: center;
   padding: 2rem 0;
 `;
@@ -78,7 +72,7 @@ function Home() {
     >
 
       <Header>
-        <Title>Welcome to  Card<span style={{ color: 'orange' }}>sera</span> : Your Interactive Learning Platform</Title>
+        <Title>Welcome to  <span style={{color:'red'}}>Cardsera</span> : Your Interactive Learning Platform</Title>
       </Header>
 
       <Main>
