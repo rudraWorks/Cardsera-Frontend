@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify'
 import Modal from '../layouts/Modal'
 import useModal from '../Hooks/useModal'
 import { useWindowSize } from "@uidotdev/usehooks";
+import "react-quill/dist/quill.core.css"; 
 
 
 const Container = styled.div`
@@ -64,9 +65,9 @@ function Root() {
                             <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAqElEQVRYR+2W3Q2DMAyEP3agha2qskN3gm5RsVR/lqiMiJRETd+c8HB+TCTf+Wyf3NE4usb4iIAUiBW4AjNwdh7MD3ADHoYTE3hVAA+1vYEhJ/AMj84KWHordswJXPYWbB+OYeDWgjUn4IhZTq01PJQC8gEzh1OlVSj6wL2CG8oHki4fag0rzV8KEyswAQvQOzMp3gP24Q3+9x6QDzi3/nd6raEUaK7AF4DTHiGLgCMZAAAAAElFTkSuQmCC'></img>
                         </Button>
                     }
-                    <OutletContainer>
+                    <OutletContainer  className="view ql-editor">
                         <Outlet /> 
-                    </OutletContainer>
+                    </OutletContainer>  
                     <Bottom>
                         a rudra pratap singh production
                     </Bottom>

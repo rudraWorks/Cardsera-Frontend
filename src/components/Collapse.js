@@ -76,7 +76,7 @@ function Collapse({ card,updateCardsArray }) {
       </QuestionContainer>
       <Content isCollapsed={isCollapsed}>
         {/* Content to be collapsed */}
-        <hr style={{ marginTop: '5px', marginBottom: '5px' }} />
+        <hr style={{ marginTop: '5px', marginBottom: '5px' }} /> 
         <p>{parser(card.back)}</p>
       </Content>
     </Wrapper>

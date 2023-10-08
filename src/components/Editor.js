@@ -42,7 +42,7 @@ const RichTextEditor = ({back,setBack,isModal}) => {
           modules={modules} 
           formats={formats} 
         />
-      </Container> 
+      </Container>  
   );
 };
 
