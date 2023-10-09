@@ -4,9 +4,12 @@ import parser from 'html-react-parser'
 import CardDetails from '../modalViews/CardDetails'
 import useModal from '../Hooks/useModal'
 import EditCard from '../modalViews/EditCard';
+import Confirm from '../modalViews/Confirm';
+import {toast} from 'react-toastify'
+import useUser from '../Hooks/useUser';
 
 // Styled components
-const Wrapper = styled.div`
+const Wrapper = styled.div` 
   margin: 10px;
   border: 1px solid #ccc;
   padding: 10px;
@@ -47,13 +50,39 @@ const Span = styled.div`
     cursor:pointer;
 `
 
-function Collapse({ card,updateCardsArray }) {
+function Collapse({ card,updateCardsArrayAfterEdit,updateCardsArrayAfterDelete }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { dispatchModal } = useModal()
+  const {user} = useUser()
 
   const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
+    setIsCollapsed(!isCollapsed); 
   };
+
+  const deleteCard = async () => {
+    console.log(card) 
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/card`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': user.token
+        },
+        body: JSON.stringify({ cardId: card._id, deck: card.deck })
+      })
+      const json = await response.json()
+      if (!response.ok) { 
+        toast.error(json.message)
+      }
+      else{ 
+        toast.success(json.message) 
+        updateCardsArrayAfterDelete(card._id)
+      }
+    }
+    catch (e) {
+      toast.error(e.message)
+    }
+  }
 
   return (
     <Wrapper>
@@ -69,15 +98,18 @@ function Collapse({ card,updateCardsArray }) {
           <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <CardDetails card={card} /> })}>
             info
           </Button>
-          <Button onClick={()=>dispatchModal({type:'SET_CONTENT',content:<EditCard id={card._id} word={card.front} meaning={card.back} updateCardsArray={updateCardsArray}/>})}>
-            edit
+          <Button onClick={()=>dispatchModal({type:'SET_CONTENT',content:<EditCard id={card._id} word={card.front} meaning={card.back} updateCardsArrayAfterEdit={updateCardsArrayAfterEdit}/>})}>
+            edit 
           </Button>
-        </div>
+          <Button  onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this card?"} deleteItem={deleteCard} /> })}>
+            delete
+          </Button> 
+        </div> 
       </QuestionContainer>
       <Content isCollapsed={isCollapsed}>
         {/* Content to be collapsed */}
         <hr style={{ marginTop: '5px', marginBottom: '5px' }} /> 
-        <p>{parser(card.back)}</p>
+        <p  className="view ql-editor">{parser(card.back)}</p>
       </Content>
     </Wrapper>
   );

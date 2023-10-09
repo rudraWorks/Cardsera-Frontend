@@ -165,9 +165,9 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord,updateEd
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'authorization': user.token
+          'authorization': user.token 
         },
-        body: JSON.stringify({ cardId: wordProp.cardId, deck: wordProp.deck })
+        body: JSON.stringify({ cardId: wordProp._id, deck: wordProp.deck })
       })
       const json = await response.json()
       if (!response.ok) {
@@ -200,7 +200,7 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord,updateEd
             as={motion.div}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
- 
+            className="view ql-editor"
           >
            {parser(wordProp.back)}
           </Meaning>

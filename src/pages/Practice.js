@@ -13,7 +13,6 @@ const Container = styled.div`
   display:flex;
   flex-direction:column;
   height:90%;
-  
 `
 const ControlButtons = styled.div`
   &>button{

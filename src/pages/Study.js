@@ -8,7 +8,6 @@ import Collapse from '../components/Collapse'
 import { Close } from '../components/Navbar'
 import ShowDecksInStudyPage from '../components/ShowDecksInStudyPage'
 
-
 const Container = styled.div` 
     display:flex; 
     justify-content:center; 
@@ -27,7 +26,7 @@ function Study() {
     const [deckName, setDeckName] = useState('')
     const { user } = useUser()
     
-    const updateCardsArray = (id,front,back) => { 
+    const updateCardsArrayAfterEdit = (id,front,back) => { 
         setCardsArr(p=>{
             return p.map(card=>{
                 if(card._id===id)
@@ -36,6 +35,14 @@ function Study() {
             })
         })
     }
+    const updateCardsArrayAfterDelete = (id) => { 
+        setCardsArr(p=>{
+            return p.filter(card=>{
+                return (card._id!==id)
+            })
+        })
+    }
+    
 
     useEffect(() => { 
         const loadDecks = async () => {
@@ -106,7 +113,6 @@ function Study() {
                         {decks.map(item => {
                             return (
                                 <ShowDecksInStudyPage key={item.value} fetchCards={fetchCards} name={item.value} />
-            
                             )
                         })} </> : (!showCards && <h3>No deck found!</h3>)
                 } 
@@ -114,9 +120,9 @@ function Study() {
             <br />
             {deckLoading && <h3 style={{ textAlign: 'center' }}>Loading...</h3>}
             {showCards && <Close style={{ background: 'gray' }} onClick={() => setShowCards(false)}>&#10006;</Close>}
-            {showCards && cardsArr.map(card => {
+            {showCards && cardsArr?.map(card => {
                 return (
-                    <Collapse key={card._id} card={card} updateCardsArray={updateCardsArray} /> 
+                    <Collapse key={card._id} card={card} updateCardsArrayAfterDelete={updateCardsArrayAfterDelete} updateCardsArrayAfterEdit={updateCardsArrayAfterEdit} /> 
                 )
             })}
         </>

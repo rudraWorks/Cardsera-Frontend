@@ -1,42 +1,80 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-
-const CardContainer = styled.div`
-  width: 170px;
-  height: 60px; /* Shorter height */
-  background: #6190E8;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #A7BFE8, #6190E8);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #A7BFE8, #6190E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin: 10px; /* Add margin */
-  
-  &:hover {
-    transform:scale(1.05);
+// Define the shine animation
+const shineAnimation = keyframes`
+  0% {
+    transform: translate(-150%, -150%);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
   }
 `;
 
-const CardContent = styled.div`
-  color: #fff;
-  font-size: 18px; /* Smaller font size */
-  text-align: center;
+// Styled components for the card
+const CardContainer = styled.div`
+  position: relative;
+  cursor:pointer;
+  width: 100%;
+  height: 100px;
+  margin: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  @media (min-width: 768px) {
+    /* For screens larger than 768px, set a fixed width */
+    width: 300px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
-function Card({ name,fetchCards }) {
-  return ( 
-    <CardContainer onClick={()=>fetchCards(name)}>
-      <CardContent>
-        <h3>{name}</h3>
-        
-      </CardContent>
+const ShineEffect = styled.div`
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to top right,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  animation: ${shineAnimation} 1.5s infinite;
+  opacity: 0;
+`;
+
+const CardName = styled.div`
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+`;
+
+const ShineCard = ({ name, fetchCards }) => {
+  const handleClick = () => {
+    fetchCards(name);
+  };
+
+  return (
+    <CardContainer onClick={handleClick}>
+      <ShineEffect />
+      <CardName>{name}</CardName>
     </CardContainer>
   );
-}
+};
 
-export default Card;
+export default ShineCard;

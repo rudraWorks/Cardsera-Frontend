@@ -19,7 +19,7 @@ const Container = styled.div`
 `
 const Card = styled.div`
   background:aliceblue;
-  border:1px solid skyblue;
+  border:1px solid lightgray;
   margin:10px;
   border-radius:10px;
   padding:15px;

@@ -16,7 +16,7 @@ const Container = styled.div`
     padding:5px;
 `
 
-function EditCard({ word, meaning, id, setWord, updateEditedWord, updateCardsArray }) {
+function EditCard({ word, meaning, id, setWord, updateEditedWord, updateCardsArrayAfterEdit }) {
     const [submitting, setSubmitting] = useState(false)
     const [wordState, setWordState] = useState(word)
     const [meaningState, setMeaningState] = useState(meaning)
@@ -38,15 +38,15 @@ function EditCard({ word, meaning, id, setWord, updateEditedWord, updateCardsArr
             const json = await response.json()
             setMessage(json.message)
             if (response.ok) {
-                dispatchModal({ type: 'CLOSE' })
+                dispatchModal({ type: 'CLOSE' }) 
                 if (updateEditedWord && setWord) {
                     setWord((p) => {
                         return { ...p, front: wordState, back: meaningState }
                     })
                     updateEditedWord(id, wordState, meaningState)
                 }
-                if(updateCardsArray){
-                    updateCardsArray(id,wordState,meaningState)
+                if(updateCardsArrayAfterEdit){
+                    updateCardsArrayAfterEdit(id,wordState,meaningState)
                 }
             }
         }
