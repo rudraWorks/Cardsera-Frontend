@@ -9,14 +9,14 @@ const Container = styled.div`
 
 `
 
-function ChooseDeck({fetchCards}) {
+function ChooseDeck({ fetchCards }) {
   const [decks, setDecks] = useState([])
   const [loading, setLoading] = useState(true)
   const { user } = useUser()
-  const {dispatchModal} = useModal()
+  const { dispatchModal } = useModal()
 
   useEffect(() => {
- 
+
     const loadDecks = async () => {
       if (!user)
         return
@@ -43,23 +43,26 @@ function ChooseDeck({fetchCards}) {
   }, [user])
 
   const handleClick = (deckName) => {
-    fetchCards({type:'chooseDeck',value:deckName})
-    dispatchModal({type:'CLOSE'})
+    fetchCards({ type: 'chooseDeck', value: deckName })
+    dispatchModal({ type: 'CLOSE' })
   }
-  if (loading) 
+  if (loading)
     return <h3>Loading...</h3>
   return (
     <Container>
 
-      { 
-        decks && decks.length ? <> 
-        <h3 style={{marginBottom:'5px'}}>Choose a deck</h3>
-        {decks.map(item => { 
-          return (
-            <Button key={item.value} onClick={()=>handleClick(item.value)}>{item.value}</Button>
-)
-        })} </>: <h3>No deck found!</h3>
-      } 
+      {
+        decks && decks.length ? <>
+          <h3 style={{ marginBottom: '5px' }}>Choose a deck</h3>
+            {decks.map(item => {
+              return (
+                <Button key={item.value} onClick={() => handleClick(item.value)}>{item.value}</Button>
+              )
+            })
+            } </>: <h3>No deck found!</h3>
+        
+      }
+       
 
     </Container>
   )

@@ -136,7 +136,7 @@ function Progress() {
         <Heatmap dayWiseReviews={dayWiseReviews} />
       </Card>
 
-      <Card style={{ display: 'none' }}>
+      <Card style={{ display: 'none',overflowY:'scroll' }}>
 
         <Chart chartData={chartData} />
 

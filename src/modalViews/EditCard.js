@@ -7,13 +7,14 @@ import RichTextEditor from '../components/Editor';
 
 const Container = styled.div`
     width:1000px;
-    height:400px;
+    height:450px;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    // justify-content:center;
     align-items:center;
     overflow:hidden;
     padding:5px;
+    padding-bottom:0;
 `
 
 function EditCard({ word, meaning, id, setWord, updateEditedWord, updateCardsArrayAfterEdit }) {
@@ -65,7 +66,7 @@ function EditCard({ word, meaning, id, setWord, updateEditedWord, updateCardsArr
             <br />
             <i>{message}</i>
             <br />
-            <Button disabled={submitting} onClick={handleSubmit} style={{ width: '99%' }}>
+            <Button  disabled={submitting} onClick={handleSubmit} style={{ width: '99%',marginTop:'auto' }}>
                 {submitting ? 'Submitting...' : 'Submit'}
             </Button>
         </Container>

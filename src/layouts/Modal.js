@@ -11,8 +11,8 @@ const MODAL_STYLES = {
     transform: 'translate(-50%,-50%)',
     minWidth: '300px',
     minHeight: '200px',
-    maxWidth: '90%',
-    maxHeight: '90%',
+    maxWidth: '95%',
+    maxHeight: '95%',
     zIndex: '3000000',
     background: 'white',
     borderRadius: '10px',
@@ -60,7 +60,7 @@ function Modal() {
             ></motion.div> 
                 <motion.div style={MODAL_STYLES}
                     initial={{ y: '-100vh', x: '-50%' }}
-                    animate={{  y: '-60%', x: '-50%' }}
+                    animate={{  y: '-50%', x: '-50%' }}
                     transition={{ type: 'sneek'}}
                 >
                     {modal}

@@ -72,7 +72,6 @@ function Study() {
 
     const fetchCards = async (deck) => {
         setDeckLoading(true)
-
         try {
             const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/fromDeck/${deck}`, {
                 method: 'GET',
@@ -101,7 +100,7 @@ function Study() {
         return <Loader />
     return (
         <>
-            {showCards && <h1 style={{ marginLeft: '15px' }}>{deckName}</h1>}
+            {showCards && <h1 style={{ marginLeft: '15px'}}>{deckName}</h1>}
    
             <Container as={motion.div}
                 initial={{ y: '100vh', scale: 0 }}

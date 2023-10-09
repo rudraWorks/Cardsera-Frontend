@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   padding: 10px;
   //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  user-select:text;
 `;
 
 export const Button = styled.button`
@@ -92,18 +93,18 @@ function Collapse({ card,updateCardsArrayAfterEdit,updateCardsArrayAfterDelete }
       <QuestionContainer>
         <QuestionText>{card.front}</QuestionText>
         <div>
-          <Button onClick={toggleCollapse}>
+          <Button style={{background:'green'}} onClick={toggleCollapse}>
             {isCollapsed ? 'show' : 'hide'}
           </Button>
           <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <CardDetails card={card} /> })}>
             info
           </Button>
-          <Button onClick={()=>dispatchModal({type:'SET_CONTENT',content:<EditCard id={card._id} word={card.front} meaning={card.back} updateCardsArrayAfterEdit={updateCardsArrayAfterEdit}/>})}>
+          <Button style={{background:'orange'}} onClick={()=>dispatchModal({type:'SET_CONTENT',content:<EditCard id={card._id} word={card.front} meaning={card.back} updateCardsArrayAfterEdit={updateCardsArrayAfterEdit}/>})}>
             edit 
           </Button>
-          <Button  onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this card?"} deleteItem={deleteCard} /> })}>
+          <Button style={{background:'tomato'}} onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this card?"} deleteItem={deleteCard} /> })}>
             delete
-          </Button> 
+          </Button>  
         </div> 
       </QuestionContainer>
       <Content isCollapsed={isCollapsed}>

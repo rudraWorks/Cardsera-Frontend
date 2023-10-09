@@ -18,25 +18,28 @@ const Container = styled.div`
         color:white;
         margin-bottom:15px;
         font-size:22px;
+        width:130px;
+        padding-left:10px;
+        padding-right:10px;
+        text-align:center;
     }
 
     @media only screen and (max-width: 600px) {
        width:100%;
     }
     z-index:1000;
-    background:#43A047;
+    background:#00bcd4;
     min-width:200px;
 
 `
 
 const NORMAL = {
     fontWeight: 'bolder'
-
 }
 const HOVER = {
-    color: 'yellow',
-    fontWeight: 'bolder'
-
+    fontWeight: 'bolder',
+    background:'#0097a7',
+    borderRadius:'10px',
 }
 export const Close = styled.button`
     position:absolute;
@@ -56,7 +59,7 @@ export const Close = styled.button`
     margin:5px;
     border-radius:50%;
     &:hover{
-        background:green; 
+        background:#0097a7; 
     }
 `
 
