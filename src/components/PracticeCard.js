@@ -167,7 +167,7 @@ function Card({ wordProp, handleKnow, handleDontKnow, progress ,setWord,updateEd
           'Content-Type': 'application/json',
           'authorization': user.token 
         },
-        body: JSON.stringify({ cardId: wordProp._id, deck: wordProp.deck })
+        body: JSON.stringify({ cardId: wordProp.cardId, deck: wordProp.deck })
       })
       const json = await response.json()
       if (!response.ok) {

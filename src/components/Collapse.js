@@ -68,7 +68,7 @@ function Collapse({ card,updateCardsArrayAfterEdit,updateCardsArrayAfterDelete }
           'Content-Type': 'application/json',
           'authorization': user.token
         },
-        body: JSON.stringify({ cardId: card._id, deck: card.deck })
+        body: JSON.stringify({ cardId: card.cardId, deck: card.deck })
       })
       const json = await response.json()
       if (!response.ok) { 
