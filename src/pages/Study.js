@@ -108,12 +108,12 @@ function Study() {
                 transition={{ type: 'sneek' }}
             >
                 {
-                    !showCards && decks && decks.length ? <>
+                    !showCards && !deckLoading && decks && decks.length ? <>
                         {decks.map(item => {
                             return (
                                 <ShowDecksInStudyPage key={item.value} fetchCards={fetchCards} name={item.value} />
                             )
-                        })} </> : (!showCards && <h3>No deck found!</h3>)
+                        })} </> : (!showCards && !deckLoading && <h3>No deck found!</h3>)
                 } 
             </Container>
             <br />

@@ -8,7 +8,7 @@ import useUser from '../Hooks/useUser';
 import Loader from '../components/Loader';
 import ImportDeck from '../components/ImportDeck';
 import RichTextEditor from '../components/Editor';  
-import Info from '../components/Info';
+import Info from '../components/SelectDeckInfo';
 
 export const Container = styled.div` 
     display:flex; 
@@ -105,7 +105,7 @@ function AddCard() {
     const { user } = useUser()
     const [loading, setLoading] = useState(true)
     const [front, setFront] = useState('')
-    const [back, setBack] = useState('<br/><br/><br/><br/>')
+    const [back, setBack] = useState('')
     const [deck, setDeck] = useState('')
     const [adding, setAdding] = useState(false)
     const [added, setAdded] = useState(0)
@@ -234,7 +234,7 @@ function AddCard() {
                             {/* <Textarea placeholder='Solution/answer/meaning...' value={back} onChange={(e) => setBack(e.target.value)} /> */}
                             <RichTextEditor back={back} setBack={setBack} />
                         </> 
-                }  
+                }   
                 <br /> 
                 <h3 style={{display:'flex',alignItems:'center'}}>Create/select a deck  &nbsp; <Info /> </h3>
                 <div
