@@ -28,7 +28,7 @@ const Container = styled.div`
        width:100%;
     }
     z-index:1000;
-    background:  #ff6f61;
+    background:#00bcd4;
     min-width:200px;
 
 `
@@ -38,8 +38,8 @@ const NORMAL = {
 }
 const HOVER = {
     fontWeight: 'bolder',
+    background:'#0097a7',
     borderRadius:'10px',
-    color:'#333333'
 }
 export const Close = styled.button`
     position:absolute;
@@ -59,7 +59,7 @@ export const Close = styled.button`
     margin:5px;
     border-radius:50%;
     &:hover{
-        background:#dc143c; 
+        background:#0097a7; 
     }
 `
 
