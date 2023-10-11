@@ -11,7 +11,7 @@ const Img = styled.img`
 function HomepageCarousal() {
   return (
     <Carousel showThumbs={true}>
-      <div>
+      <div> 
         <Img src="/images/Screenshots/progress2.png" />
       </div>
       <div>
@@ -22,7 +22,7 @@ function HomepageCarousal() {
       </div>
       <div>
         <Img src="/images/Screenshots/importdeck.png" />
-      </div>
+      </div> 
       <div>
         <Img src="/images/Screenshots/practicehome.png" />
       </div>

@@ -71,10 +71,24 @@ function Home() {
     >
 
       <Header>
-        <Title>Welcome to  <span style={{color:'red'}}>Cardsera</span> : Your Interactive Learning Platform</Title>
+        <Title>Welcome to  <span style={{ color: 'red' }}>Cardsera</span> : Your Interactive Learning Platform</Title>
       </Header>
-
+    
       <Main>
+        <Section>
+        <a
+        href="https://www.producthunt.com/posts/cardsera?utm_source=badge-featured&utm_medium=badge&utm_source=badge-cardsera"
+        target="_blank"
+      >
+        <img
+          src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=419226&theme=light"
+          alt="Cardsera - Your interactive learning platform | Product Hunt"
+          style={{ width: '250px', height: '54px' }}
+          width="250"
+          height="54"
+        />
+      </a>
+        </Section>
         <Section>
           <p>
             <img style={{ width: '100px' }} src='logo101.png' />
@@ -121,11 +135,11 @@ function Home() {
             numRatings={1.8}
           />
         </Section> */}
-        {!user && <Signup />} 
-        
+        {!user && <Signup />}
+
         <Section>
           <SectionTitle>Snapshots</SectionTitle>
-          <HomepageCarousal/>
+          <HomepageCarousal />
         </Section>
       </Main>
       <Footer>
