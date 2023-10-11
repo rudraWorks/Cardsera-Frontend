@@ -135,12 +135,13 @@ function Home() {
             numRatings={1.8}
           />
         </Section> */}
-        {!user && <Signup />}
+       
 
         <Section>
           <SectionTitle>Snapshots</SectionTitle>
           <HomepageCarousal />
         </Section>
+        {!user && <Signup />}
       </Main>
       <Footer>
         <p>Join thousands of learners who have unlocked the power of interactive learning with Cardsera. Start your journey to knowledge mastery today!</p>
