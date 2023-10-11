@@ -38,12 +38,12 @@ const NORMAL = {
 }
 const HOVER = {
     fontWeight: 'bolder',
-    background:'#0097a7',
-    borderRadius:'10px',
+    background: '#0097a7',
+    borderRadius: '10px',
 }
 export const Close = styled.button`
     position:absolute;
-    right:0;
+    right:0; 
     top:0;
     border:none;
     background:transparent;
@@ -105,7 +105,7 @@ function Navbar({ showNav, setShowNav }) {
                             </NavLink>
 
                             <NavLink onClick={handleClick} to={'/study'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
-                                Study   
+                                Study
                             </NavLink>
 
 
@@ -128,7 +128,13 @@ function Navbar({ showNav, setShowNav }) {
                         )
                     }
 
-
+                    <span style={{ marginTop: 'auto' }}>
+                        <small>
+                        &#169; Cardsera 2023
+                            <br />
+                            merudra.official@gmail.com
+                        </small>
+                    </span>
 
                 </Container>
 
