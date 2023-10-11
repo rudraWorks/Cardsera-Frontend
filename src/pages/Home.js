@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import Signup from '../components/SignupButton'
 import useUser from '../Hooks/useUser'
-import ShelfCard from '../components/ShelfCard'
-
+import HomepageCarousal from '../components/HomepageCarousal'
 
 const Container = styled.div`
 margin-top:15px;
@@ -122,7 +121,12 @@ function Home() {
             numRatings={1.8}
           />
         </Section> */}
-        {!user && <Signup />}
+        {!user && <Signup />} 
+        
+        <Section>
+          <SectionTitle>Snapshots</SectionTitle>
+          <HomepageCarousal/>
+        </Section>
       </Main>
       <Footer>
         <p>Join thousands of learners who have unlocked the power of interactive learning with Cardsera. Start your journey to knowledge mastery today!</p>
