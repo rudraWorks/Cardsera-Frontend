@@ -10,6 +10,7 @@ import { Button } from './Practice'
 import DeckCard from '../components/DeckCard'
 import { useNavigate } from 'react-router-dom'
 import Heatmap from '../components/Heatmap'
+import { removeLast } from '../components/Heatmap'
 
 
 const Container = styled.div`
@@ -54,6 +55,7 @@ function Progress() {
           }
         })
         const json = await response.json()
+        console.log(json);
         setLoading(false)
         if (!response.ok) {
           return toast.error(json.message)
@@ -117,8 +119,8 @@ function Progress() {
       <Card>
         <h2 style={{ color: 'black' }}>General</h2>
         <h3>Total cards: {data?.general.totalCards || 0}</h3>
-        <h3>Last added on: {data?.general.lastAddedDate ? new Date(data?.general.lastAddedDate).toLocaleDateString('en-GB',{timeZone:'UTC'}) : 'NA'}</h3>
-        <h3>Last reviewed on: {data?.general.lastReviewed ? new Date(data?.general.lastReviewed).toLocaleDateString('en-GB',{timeZone:'UTC'}) : 'NA'}</h3>
+        <h3>Last added on: {data?.general.lastAddedDate ?removeLast((new Date(data?.general.lastAddedDate).toUTCString()).toString()) : 'NA'}</h3>
+        <h3>Last reviewed on: {data?.general.lastReviewed ? removeLast((new Date(data?.general.lastReviewed).toUTCString()).toString()) : 'NA'}</h3>
 
       </Card>
       <Card style={{ maxHeight: '500px', overflowY: 'scroll' }}>
@@ -136,14 +138,14 @@ function Progress() {
         <Heatmap dayWiseReviews={dayWiseReviews} />
       </Card>
 
-      <Card style={{ display: 'none',overflowY:'scroll' }}>
+      {/* <Card style={{ display: 'none',overflowY:'scroll' }}>
 
         <Chart chartData={chartData} />
 
         <h3 style={{ marginLeft: '10px', marginTop: '10px' }}>x-axis: date <br /> y-axis: {toggleAccuracy ? 'Accuracy' : 'Cards reviewed'}</h3>
         <Button style={{ marginBottom: 0 }} onClick={handleChangeData}>{!toggleAccuracy ? 'Accuracy' : 'Reviews'}</Button> 
 
-      </Card>
+      </Card> */}
 
       <span style={{ margin: '10px', color: 'gray' }}>Current time: {new Date().toUTCString()}</span>
 

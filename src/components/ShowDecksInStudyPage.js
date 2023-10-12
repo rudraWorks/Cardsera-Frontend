@@ -22,7 +22,7 @@ const CardContainer = styled.div`
   position: relative;
   cursor:pointer;
   width: 100%;
-  height: 100px;
+  height: 80px;
   margin: 10px;
   background-color: #f0f0f0;
   border: 1px solid #ddd;

@@ -22,6 +22,9 @@ const Container = styled.div`
         padding-left:10px;
         padding-right:10px;
         text-align:center;
+        display:flex;
+        align-items:center;
+        justify-content:center;
     }
 
     @media only screen and (max-width: 600px) {
@@ -128,7 +131,7 @@ function Navbar({ showNav, setShowNav }) {
                         )
                     }
 
-                    <span style={{ marginTop: 'auto' }}>
+                    <span style={{ marginTop: 'auto',textAlign:'center' }}>
                         <small>
                         &#169; Cardsera 2023
                             <br />

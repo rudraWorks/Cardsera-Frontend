@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import styled from 'styled-components'
 import Confirm from '../modalViews/Confirm'
 import useModal from '../Hooks/useModal'
-
+import { removeLast } from './Heatmap'
 
 const Container = styled.div`
     background:white;
@@ -15,7 +15,7 @@ const Container = styled.div`
     border:1px solid rgba(0,0,255,.2);
     color:gray;
 `
-const Delete = styled.button`
+const Button = styled.button`
     height:20px;
     margin-left:auto;
     display:flex;
@@ -83,18 +83,18 @@ function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck
     }
     return (
         <Container>
-            <h2 style={{ color: 'purple' }}>{name}</h2>
-            {totalCards} {totalCards === 1 ? "Card" : "Cards"}
+            <h2 style={{ color: 'purple'}}>{name}</h2>
+            {totalCards} {totalCards === 1 ? "Card" : "Cards"} 
             <br />
-            <small>{new Date(createdOn).toLocaleDateString('en-GB')}</small>
+            {removeLast((new Date(createdOn).toUTCString()).toString())}
             <br />
-            <small> {id} </small>
+           {id} 
             <br />
-            <small> Imports: {imports} </small>
+            Imports: {imports} 
             <br/>
             <span style={{ display: 'flex', alignItems: 'center' ,width:'100%'}}>
                 Public? &nbsp; <input disabled={disabled} onChange={handleShare} checked={checked} type='checkbox' />
-                <Delete onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this deck?"} deleteItem={handleDelete} /> })}>Delete</Delete>
+                <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this deck?"} deleteItem={handleDelete} /> })}>delete</Button>
             </span>
         </Container>
     )
