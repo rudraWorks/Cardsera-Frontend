@@ -59,8 +59,8 @@ export const QuillToolbar = () => (
   <div id="toolbar">
     <span className="ql-formats">
       <select className="ql-header" defaultValue="3">
-        <option value="1">Heading</option>
-        <option value="2">Subheading</option>
+        {/* <option value="1">Heading</option> */}
+        <option value="2">Heading</option>
         <option value="3">Normal</option>
       </select>
     </span>
@@ -73,18 +73,18 @@ export const QuillToolbar = () => (
       <button className="ql-list" value="ordered" />
       <button className="ql-list" value="bullet" />
     </span>
-    <span className="ql-formats">
+    {/* <span className="ql-formats">
       <button className="ql-script" value="super" />
       <button className="ql-script" value="sub" />
-    </span>
+    </span> */}
     <span className="ql-formats">
-      <select className="ql-align" />
+      {/* <select className="ql-align" /> */}
       <select className="ql-color" />
       <select className="ql-background" />
     </span>
-    <span className="ql-formats">
+    {/* <span className="ql-formats">
       <button className="ql-link" />
-    </span>
+    </span> */}
     <span className="ql-formats">
       <button className="ql-code-block" />
     </span>

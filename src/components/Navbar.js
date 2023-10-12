@@ -19,8 +19,8 @@ const Container = styled.div`
         margin-bottom:15px;
         font-size:22px;
         width:130px;
-        padding-left:10px;
-        padding-right:10px;
+        // padding-left:10px;
+        // padding-right:10px;
         text-align:center;
         display:flex;
         align-items:center;
@@ -131,9 +131,12 @@ function Navbar({ showNav, setShowNav }) {
                         )
                     }
 
-                    <span style={{ marginTop: 'auto',textAlign:'center',userSelect:'text' }}>
+                    <NavLink onClick={handleClick} to={'/app'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
+                        App 
+                    </NavLink>
+                    <span style={{ marginTop: 'auto', textAlign: 'center', userSelect: 'text' }}>
                         <small>
-                        &#169; Cardsera 2023
+                            &#169; Cardsera 2023
                             <br />
                             merudra.official@gmail.com
                         </small>

@@ -7,6 +7,7 @@ import Loader from '../components/Loader'
 import Collapse from '../components/Collapse'
 import { Close } from '../components/Navbar'
 import ShowDecksInStudyPage from '../components/ShowDecksInStudyPage'
+import useTitle from '../Hooks/useTitle'
 
 const Container = styled.div` 
     display:flex; 
@@ -25,7 +26,8 @@ function Study() {
     const [showCards, setShowCards] = useState(false)
     const [deckName, setDeckName] = useState('')
     const { user } = useUser()
-    
+    useTitle('Study')
+
     const updateCardsArrayAfterEdit = (id,front,back) => { 
         setCardsArr(p=>{
             return p.map(card=>{

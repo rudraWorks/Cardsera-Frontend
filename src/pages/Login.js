@@ -1,13 +1,12 @@
 import React from 'react'
 import Login  from '../components/Login'
+import useTitle from '../Hooks/useTitle'
 
 function LoginPage() {
+  useTitle('Login/Register')
   return (
-    <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',width:'100%',background:'grjay'}}>
-      <img style={{width:'40%',minWidth:'250px',margin:'30px'}} src='/images/login.jpg' />
-      <div>
+    <div>
         <Login/>
-      </div> 
     </div>
   )
 }

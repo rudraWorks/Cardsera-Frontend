@@ -9,6 +9,7 @@ import Loader from '../components/Loader';
 import ImportDeck from '../components/ImportDeck';
 import RichTextEditor from '../components/Editor';  
 import Info from '../components/SelectDeckInfo';
+import useTitle from '../Hooks/useTitle';
 
 export const Container = styled.div` 
     display:flex; 
@@ -111,9 +112,11 @@ function AddCard() {
     const [added, setAdded] = useState(0)
     const [importFlag, setImportFlag] = useState(false)
     const [deckId, setDeckId] = useState('')
+    useTitle('Add card')
+ 
+    // change('Add card')
 
-
-    useEffect(() => {
+    useEffect(() => { 
 
         const loadDecks = async () => {
             try {

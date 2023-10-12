@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import Signup from '../components/SignupButton'
 import useUser from '../Hooks/useUser'
 import HomepageCarousal from '../components/HomepageCarousal'
+import useTitle from '../Hooks/useTitle'
 
 const Container = styled.div`
 margin-top:15px;
 font-size:20px;
-// background:gray;
 `
 
 
@@ -61,6 +61,7 @@ const Footer = styled.footer`
 
 function Home() {
   const { user } = useUser()
+  useTitle('Cardsera Home')
 
   return (
     <Container
@@ -73,22 +74,9 @@ function Home() {
       <Header>
         <Title>Welcome to  <span style={{ color: 'red' }}>Cardsera</span> : Your Interactive Learning Platform</Title>
       </Header>
-    
+
       <Main>
-        <Section>
-        <a
-        href="https://www.producthunt.com/posts/cardsera?utm_source=badge-featured&utm_medium=badge&utm_source=badge-cardsera"
-        target="_blank"
-      >
-        <img
-          src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=419226&theme=light"
-          alt="Cardsera - Your interactive learning platform | Product Hunt"
-          style={{ width: '250px', height: '54px' }}
-          width="250"
-          height="54"
-        />
-      </a>
-        </Section>
+
         <Section>
           <p>
             <img style={{ width: '100px' }} src='logo101.png' />
@@ -135,13 +123,29 @@ function Home() {
             numRatings={1.8}
           />
         </Section> */}
-       
+
 
         <Section>
           <SectionTitle>Snapshots</SectionTitle>
           <HomepageCarousal />
         </Section>
+
         {!user && <Signup />}
+        <Section>
+          <a
+            href="https://www.producthunt.com/posts/cardsera?utm_source=badge-featured&utm_medium=badge&utm_source=badge-cardsera"
+            target="_blank"
+          >
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=419226&theme=light"
+              alt="Cardsera - Your interactive learning platform | Product Hunt"
+              style={{ width: '250px', height: '54px' }}
+              width="250"
+              height="54"
+            />
+          </a>
+          <img style={{maxWidth:'100%'}} src='/images/Screenshots/producthuntBanner.png' />
+        </Section>
       </Main>
       <Footer>
         <p>Join thousands of learners who have unlocked the power of interactive learning with Cardsera. Start your journey to knowledge mastery today!</p>

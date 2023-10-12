@@ -85,7 +85,7 @@ function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck
     }
     return (
         <Container>
-            <h2 style={{ color: 'purple'}}>{deckName}</h2>
+            <h3 style={{ color: 'purple'}}>{deckName}</h3> 
             {totalCards} {totalCards === 1 ? "Card" : "Cards"} 
             <br />
             {removeLast((new Date(createdOn).toUTCString()).toString())}

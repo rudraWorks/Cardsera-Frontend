@@ -13,7 +13,6 @@ const Wrapper = styled.div`
 const Text = styled.p`
   font-size: 18px;
   margin: 0;
-  background:lightgreen;
   padding:5px;
   border-radius:15px;
 `;

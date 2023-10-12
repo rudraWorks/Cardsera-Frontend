@@ -11,6 +11,7 @@ import DeckCard from '../components/DeckCard'
 import { useNavigate } from 'react-router-dom'
 import Heatmap from '../components/Heatmap'
 import { removeLast } from '../components/Heatmap'
+import useTitle from '../Hooks/useTitle'
 
 
 const Container = styled.div`
@@ -42,6 +43,8 @@ function Progress() {
   const [toggleAccuracy, setToggleAccuracy] = useState(true)
   const [chartData, setChartData] = useState([])
   const navigate = useNavigate()
+  useTitle('Progress')
+
   useEffect(() => {
 
     setLoading(true)

@@ -42,7 +42,7 @@ function RenameDeck({ oldName, token, setDeckName }) {
       <h2>Rename deck</h2>
       <h3 style={{ color: 'blue' }}>{oldName}</h3>
       <br />
-      <Input autoFocus value={newName} onChange={(e) => { setNewName(e.target.value); setError('') }} style={{ padding: '5px', width: '100%' }} />
+      <Input value={newName} onChange={(e) => { setNewName(e.target.value); setError('') }} style={{ padding: '5px', width: '100%' }} />
       <br /> 
       {error!=='' && <span style={{color:'red'}}><br/>{error}<br/></span>} 
       <br /> 

@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import LoginPage from './pages/Login';
 import Shelf from './pages/Shelf';
 import Study from './pages/Study';
+import InstallApp from './pages/InstallApp'
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         path:'study',
         element:<Study/>
       }, 
+      {
+        path:'app',
+        element:<InstallApp/>
+      },
       { 
         path:'*',
         element:<h3 style={{textAlign:'center'}}>404 Not Found!!</h3>

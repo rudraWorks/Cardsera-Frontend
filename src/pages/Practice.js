@@ -8,6 +8,8 @@ import shuffle from '../utils/shuffleArray'
 import useModal from '../Hooks/useModal'
 import ChooseDeck from '../modalViews/ChooseDeck'
 import Loader from '../components/Loader'
+import useTitle from '../Hooks/useTitle'
+import { Close } from '../components/Navbar'
 
 const Container = styled.div`
   display:flex;
@@ -60,7 +62,7 @@ function About() {
   const [loading, setLoading] = useState(false)
   let [arr, setArr] = useState([])
   const [progress, setProgress] = useState({ know: 0, dontKnow: 0 })
-
+  useTitle('Practice')
 
   const { user } = useUser()
   const { dispatchModal } = useModal()
@@ -231,11 +233,11 @@ function About() {
          
             <PracticeCard updateEditedWord={updateEditedWord} wordProp={word} handleKnow={handleKnow} progress={progress} handleDontKnow={handleDontKnow} setWord={setWord} />
           </motion.div>
-        }
+        } 
       </AnimatePresence>
-
+       { !complete && <Close onClick={()=>setComplete(true)} style={{background:'gray'}}>X</Close> }
       <AnimatePresence>
-        {
+        {   
           complete &&
           <ControlButtons
             as={motion.div}
