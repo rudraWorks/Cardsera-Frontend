@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {motion} from 'framer-motion'
+import useTitle from '../Hooks/useTitle'
 
 const Container = styled.div`
     display:flex;
@@ -16,6 +17,7 @@ const Img = styled.img`
 
 
 function InstallApp() {
+    useTitle('App')
   return ( 
     <Container
     as={motion.div}
