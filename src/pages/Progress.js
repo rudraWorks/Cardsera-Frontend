@@ -55,7 +55,7 @@ function Progress() {
           }
         })
         const json = await response.json()
-        console.log(json);
+        // console.log(json);
         setLoading(false)
         if (!response.ok) {
           return toast.error(json.message)

@@ -131,7 +131,7 @@ function Navbar({ showNav, setShowNav }) {
                         )
                     }
 
-                    <span style={{ marginTop: 'auto',textAlign:'center' }}>
+                    <span style={{ marginTop: 'auto',textAlign:'center',userSelect:'text' }}>
                         <small>
                         &#169; Cardsera 2023
                             <br />

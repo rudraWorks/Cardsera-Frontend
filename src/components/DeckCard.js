@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Confirm from '../modalViews/Confirm'
 import useModal from '../Hooks/useModal'
 import { removeLast } from './Heatmap'
+import RenameDeck from '../modalViews/RenameDeck'
 
 const Container = styled.div`
     background:white;
@@ -17,7 +18,6 @@ const Container = styled.div`
 `
 const Button = styled.button`
     height:20px;
-    margin-left:auto;
     display:flex;
     align-items:center;
     cursor:pointer;
@@ -33,7 +33,9 @@ const Button = styled.button`
 function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck,imports}) {
     const [checked, setChecked] = useState(share === 1 ? true : false)
     const [disabled, setDisabled] = useState(false)
+    const [deckName,setDeckName] = useState(name)
     const { dispatchModal } = useModal() 
+    
     const handleShare = async () => {
         setDisabled(true)
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/toggleShare`, {
@@ -83,7 +85,7 @@ function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck
     }
     return (
         <Container>
-            <h2 style={{ color: 'purple'}}>{name}</h2>
+            <h2 style={{ color: 'purple'}}>{deckName}</h2>
             {totalCards} {totalCards === 1 ? "Card" : "Cards"} 
             <br />
             {removeLast((new Date(createdOn).toUTCString()).toString())}
@@ -93,7 +95,8 @@ function DeckCard({ name, totalCards, createdOn, id, share, userToken,updateDeck
             Imports: {imports} 
             <br/>
             <span style={{ display: 'flex', alignItems: 'center' ,width:'100%'}}>
-                Public? &nbsp; <input disabled={disabled} onChange={handleShare} checked={checked} type='checkbox' />
+                Public &nbsp; <input disabled={disabled} onChange={handleShare} checked={checked} type='checkbox' />
+                <Button onClick={()=>dispatchModal({type:'SET_CONTENT',content:<RenameDeck oldName={deckName} token={userToken} setDeckName={setDeckName} />})} style={{background:'orange',marginLeft:'auto',marginRight:'5px'}}>rename</Button>
                 <Button onClick={() => dispatchModal({ type: 'SET_CONTENT', content: <Confirm message={"Are you sure you want to delete this deck?"} deleteItem={handleDelete} /> })}>delete</Button>
             </span>
         </Container>
