@@ -120,7 +120,7 @@ function Study() {
             </Container>
             <br />
             {deckLoading && <h3 style={{ textAlign: 'center' }}>Loading...</h3>}
-            {showCards && <Close style={{ background: 'gray' }} onClick={() => setShowCards(false)}>&#10006;</Close>}
+            {showCards && <Close style={{ background: 'aliceblue',border:'1px solid skyblue' }} onClick={() => setShowCards(false)}>X</Close>}
             {showCards && cardsArr?.map(card => {
                 return (
                     <Collapse key={card._id} card={card} updateCardsArrayAfterDelete={updateCardsArrayAfterDelete} updateCardsArrayAfterEdit={updateCardsArrayAfterEdit} /> 

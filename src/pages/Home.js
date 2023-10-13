@@ -131,6 +131,7 @@ function Home() {
         </Section>
 
         {!user && <Signup />}
+        <br/><br/>
         <Section>
           <a
             href="https://www.producthunt.com/posts/cardsera?utm_source=badge-featured&utm_medium=badge&utm_source=badge-cardsera"
@@ -147,9 +148,6 @@ function Home() {
           <img style={{maxWidth:'100%'}} src='/images/Screenshots/producthuntBanner.png' />
         </Section>
       </Main>
-      <Footer>
-        <p>Join thousands of learners who have unlocked the power of interactive learning with Cardsera. Start your journey to knowledge mastery today!</p>
-      </Footer>
 
     </Container>
   )

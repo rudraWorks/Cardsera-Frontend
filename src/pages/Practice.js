@@ -235,7 +235,7 @@ function About() {
           </motion.div>
         } 
       </AnimatePresence>
-       { !complete && <Close onClick={()=>setComplete(true)} style={{background:'gray'}}>X</Close> }
+       { !complete && <Close onClick={()=>setComplete(true)} style={{background:'aliceblue',border:'1px solid skyblue'}}>X</Close> }
       <AnimatePresence>
         {   
           complete &&

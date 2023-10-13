@@ -28,7 +28,8 @@ const BACKGROUND_STYLES = {
     right: '0',
     bottom: '0',
     background: 'rgba(0,0,0,0.5)',
-    zIndex: '100000'
+    zIndex: '100000',
+    // backdropFilter:'blur(1px)'
 }
 
 const Button = styled.button`

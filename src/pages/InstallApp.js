@@ -9,7 +9,7 @@ const Container = styled.div`
     align-items:center;
 `
 const Img = styled.img`
-    border:1px solid lightgray;
+    // border:1px solid lightgray;
     height:fit-content;
     max-width:90%;
     margin:10px;

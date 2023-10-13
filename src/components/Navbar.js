@@ -14,35 +14,44 @@ const Container = styled.div`
     padding-top:50px;
     color:white;
     &>a{
-        text-decoration:none;
-        color:white;
-        margin-bottom:15px;
-        font-size:22px;
-        width:130px;
-        // padding-left:10px;
-        // padding-right:10px;
+        width:100%;
+        height:30px;
+        background:#e5eff7;
+        border:1px solid #c2cad1;
+        border-radius:5px;
+        margin:5px;
         text-align:center;
+        cursor:pointer;
+        color:black;
+        text-decoration:none; 
+        &:hover{
+            background:#c9d2d9;
+        }
         display:flex;
         align-items:center;
         justify-content:center;
+        // font-size:25px;
+        // font-weight:bolder;
+        padding:15px;
     }
 
     @media only screen and (max-width: 600px) {
        width:100%;
+       border:none;
     }
     z-index:1000;
-    background:#00bcd4;
-    min-width:200px;
-
+    background:aliceblue;
+    min-width:250px;
+    border-right:1px solid skyblue;
 `
 
 const NORMAL = {
-    fontWeight: 'bolder'
+    // fontWeight: 'bolder'
 }
 const HOVER = {
-    fontWeight: 'bolder',
-    background: '#0097a7',
-    borderRadius: '10px',
+    background:'#7a9bb3',
+    color:'white',
+    border:'1px solid #c2cad1'
 }
 export const Close = styled.button`
     position:absolute;
@@ -51,7 +60,7 @@ export const Close = styled.button`
     border:none;
     background:transparent;
     cursor:pointer;
-    color:white;
+    color:black;
     padding:10px;
     font-weight:bolder;
     width:30px;
@@ -61,9 +70,7 @@ export const Close = styled.button`
     align-items:center;
     margin:5px;
     border-radius:50%;
-    &:hover{
-        background:#0097a7; 
-    }
+    //  border:1px solid skyblue; 
 `
 
 function Navbar({ showNav, setShowNav }) {
@@ -134,7 +141,7 @@ function Navbar({ showNav, setShowNav }) {
                     <NavLink onClick={handleClick} to={'/app'} style={({ isActive }) => (isActive ? HOVER : NORMAL)}>
                         App 
                     </NavLink>
-                    <span style={{ marginTop: 'auto', textAlign: 'center', userSelect: 'text' }}>
+                    <span style={{ marginTop: 'auto', textAlign: 'center', userSelect: 'text',color:'black' }}>
                         <small>
                             &#169; Cardsera 2023
                             <br />
