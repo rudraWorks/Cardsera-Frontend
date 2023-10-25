@@ -47,11 +47,13 @@ const Container = styled.div`
 
 const NORMAL = {
     // fontWeight: 'bolder'
+	fontWeight:'bolder'
 }
 const HOVER = {
     background:'#7a9bb3',
     color:'white',
-    border:'1px solid #c2cad1'
+    border:'1px solid #c2cad1',
+fontWeight:'bolder'
 }
 export const Close = styled.button`
     position:absolute;
