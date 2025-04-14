@@ -21,10 +21,10 @@ function Heatmap({ dayWiseReviews }) {
     return (
         <>
             <CalendarHeatmap
-                startDate={new Date('2022-12-31')}
-                endDate={new Date('2023-12-31')}
+                startDate={new Date('2025-01-01')}
+                endDate={new Date('2025-12-31')}
                 values={dayWiseReviews}
-                classForValue={value => {
+                classForValue={value => { 
                     if (!value) {
                         return 'color-empty';
                     }

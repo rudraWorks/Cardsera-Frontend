@@ -119,6 +119,7 @@ function AddCard() {
     useEffect(() => { 
 
         const loadDecks = async () => {
+            console.log("hi")
             try {
                 const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/decks`, {
                     method: 'GET',
@@ -127,7 +128,9 @@ function AddCard() {
                         'authorization': user.token
                     }
                 })
+                console.log(response)
                 const json = await response.json()
+                console.log("hi  "+json)
                 if (!response.ok) {
                     return toast.error(json.message)
                 }
